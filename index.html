@@ -1,0 +1,1694 @@
+<!--
+---
+channel: hiring
+project: team-hiring
+type: website-draft
+created: 2026-05-14
+author: claude
+tags: [hiring, creative-producer, spacejam, taste-test, referral]
+inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
+---
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAMP :: Creative Experimentation Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bowlby+One&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000;
+      --star: #fff;
+      --cream: #f6e9c1;
+      --gold: #ffcc33;
+      --hot: #ff3399;
+      --planet-brian: #b87333;
+      --planet-penny: #c0844a;
+      --planet-multi: #ff8c42;
+      --planet-future: #6a3aae;
+      --planet-team: #2d7d8a;
+      --planet-hire: #ff3399;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: #000; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--cream);
+      font-family: "VT323", "Courier New", monospace;
+      font-size: 18px;
+      overflow: hidden;
+      height: 100vh;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--hot); }
+
+    /* ================= STARFIELD ================= */
+    .starfield {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 24px 28px, rgba(255,255,255,0.9) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 82px 62px, rgba(255,233,168,0.82) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 132px 104px, rgba(255,255,255,0.7) 0 1.4px, transparent 2px),
+        radial-gradient(ellipse 800px 600px at 15% 20%, rgba(106, 58, 174, 0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 500px at 85% 80%, rgba(255, 51, 153, 0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 70% 15%, rgba(45, 125, 138, 0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 900px 700px at 30% 90%, rgba(255, 122, 0, 0.15) 0%, transparent 70%),
+        #000;
+      background-size: 160px 130px, 220px 170px, 300px 250px, auto, auto, auto, auto, auto;
+    }
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 4px #fff;
+    }
+    .star.twinkle { animation: twinkle 3s ease-in-out infinite; }
+    .star.gold { background: #ffe9a8; box-shadow: 0 0 6px #ffcc66; }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.25; transform: scale(0.7); }
+    }
+    .shooting-star {
+      position: absolute;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      opacity: 0;
+      animation: shoot 8s linear infinite;
+      top: 20%;
+      left: -10%;
+    }
+    .shooting-star:nth-child(2) { top: 65%; animation-delay: 4s; animation-duration: 11s; }
+    @keyframes shoot {
+      0%   { transform: translateX(0) translateY(0) rotate(15deg); opacity: 0; }
+      5%   { opacity: 1; }
+      20%  { opacity: 1; }
+      30%  { opacity: 0; transform: translateX(120vw) translateY(40vh) rotate(15deg); }
+      100% { opacity: 0; transform: translateX(120vw) translateY(40vh) rotate(15deg); }
+    }
+
+    /* ================= TOP MARQUEE ================= */
+    .top-marquee {
+      position: relative;
+      background: #1a0033;
+      color: var(--gold);
+      border-bottom: 1px solid #330066;
+      font-family: "VT323", monospace;
+      font-size: 18px;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 4px 0;
+      z-index: 2;
+    }
+    .top-marquee .roll {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 38s linear infinite;
+    }
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .blink { animation: blink 0.9s steps(2, start) infinite; }
+    @keyframes blink { to { visibility: hidden; } }
+
+    /* ================= UNIVERSE (HOME) ================= */
+    .universe {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sun-wrap {
+      position: relative;
+      text-align: center;
+      z-index: 5;
+      width: 30vmin;
+      height: 30vmin;
+      max-width: 360px;
+      max-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sun-halo {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,204,51,0.35) 0%, rgba(255,51,153,0.18) 30%, transparent 65%);
+      animation: halo-pulse 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes halo-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50%      { transform: scale(1.1); opacity: 1; }
+    }
+    .sun-orbit {
+      position: absolute;
+      inset: -1vmin;
+      border: 1px dashed rgba(255, 204, 51, 0.55);
+      border-radius: 50%;
+      animation: spin 60s linear infinite;
+      pointer-events: none;
+    }
+    .sun-orbit.r2 {
+      inset: -2vmin;
+      border-style: dotted;
+      border-color: rgba(255, 51, 153, 0.45);
+      animation-duration: 110s;
+      animation-direction: reverse;
+    }
+    .sun-orbit .orbiter {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      filter: drop-shadow(0 0 4px #ffcc33);
+    }
+    .sun-orbit.r2 .orbiter { font-size: 22px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .sun {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      padding: 14px 18px;
+    }
+    .sun-stars-l, .sun-stars-r {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 28px;
+      color: var(--gold);
+      text-shadow: 2px 2px 0 var(--hot);
+    }
+    .sun-stars-l { left: -42px; }
+    .sun-stars-r { right: -42px; }
+
+    .sun-logo {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(36px, 6.5vmin, 68px);
+      font-weight: 700;
+      letter-spacing: 4px;
+      line-height: 0.9;
+      color: var(--gold);
+      text-shadow:
+        4px 4px 0 var(--hot),
+        8px 8px 0 #4a002a,
+        0 0 30px rgba(255, 204, 51, 0.6);
+      transform: skewX(-6deg);
+    }
+    .sun-subline {
+      margin-top: 8px;
+      align-self: center;
+      width: max-content;
+      max-width: 100%;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(7px, 1vmin, 10px);
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-shadow: 1px 1px 0 var(--hot);
+      padding: 3px 10px;
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+      text-align: center;
+      line-height: 1.3;
+    }
+    .sun-tagline {
+      font-family: "VT323", monospace;
+      font-size: 17px;
+      color: var(--gold);
+      margin-top: 8px;
+      letter-spacing: 2px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 820px) {
+      .sun-wrap { width: 38vmin; height: 38vmin; max-width: 260px; max-height: 260px; }
+      .sun-stars-l, .sun-stars-r { font-size: 22px; }
+      .sun-stars-l { left: -24px; } .sun-stars-r { right: -24px; }
+    }
+    @media (max-width: 640px) {
+      .sun-stars-l, .sun-stars-r { display: none; }
+      .sun-wrap { width: 38vmin; height: 38vmin; max-width: 220px; max-height: 220px; }
+      .sun-subline { letter-spacing: 2.5px; }
+    }
+
+    /* ================= PLANETS ================= */
+    .planet {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .planet:hover { transform: scale(1.06); z-index: 4; }
+    .planet:hover .planet-body { filter: brightness(1.15); }
+    .planet-body {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow:
+        inset -6px -6px 12px rgba(0,0,0,0.35),
+        inset 4px 4px 8px rgba(255,255,255,0.15);
+      transition: filter 0.3s ease;
+    }
+    /* surface speckle */
+    .planet-body::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse 22% 14% at 65% 35%, rgba(0,0,0,0.3), transparent 60%),
+        radial-gradient(ellipse 14% 9%  at 25% 55%, rgba(0,0,0,0.22), transparent 60%),
+        radial-gradient(ellipse 12% 7%  at 50% 72%, rgba(0,0,0,0.2), transparent 60%),
+        radial-gradient(ellipse 24% 15% at 78% 70%, rgba(255,255,255,0.06), transparent 60%);
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.9;
+    }
+    .planet-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(7px, 1.15vmin, 11px);
+      letter-spacing: 1px;
+      color: #fff;
+      text-align: center;
+      -webkit-text-stroke: 1px #000;
+      paint-order: stroke fill;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.55);
+      line-height: 1.1;
+      pointer-events: none;
+      padding: 0 8px;
+      width: 96%;
+    }
+
+    /* Saturn rings (front + back halves for layering depth) */
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 175%;
+      height: 38%;
+      transform: translate(-50%, -50%) rotate(-22deg);
+      border: 2px solid rgba(255, 230, 180, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 6px rgba(0,0,0,0.0), 0 0 20px rgba(255,230,180,0.15);
+    }
+    .ring::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(255, 230, 180, 0.4);
+      border-radius: 50%;
+    }
+    .ring.back  { z-index: 0; }
+    .ring.front { z-index: 4; clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%); }
+
+    /* per-planet positions, sizes, palette */
+
+    /* CONTACT — middle-right */
+    .p-contact { top: 50%; right: 22%; transform: translateY(-50%); width: clamp(54px, 8vmin, 90px); }
+    .p-contact:hover { transform: translateY(-50%) scale(1.06); }
+    .p-contact .planet-body {
+      background: radial-gradient(circle at 32% 28%, #f4ffff 0%, #6cb4ff 42%, #1a3a5e 100%);
+      --halo: rgba(108, 180, 255, 0.5);
+    }
+    .p-contact .planet-body::after {
+      background:
+        radial-gradient(ellipse 60% 18% at 50% 8%, rgba(255,255,255,0.7), transparent 80%),
+        radial-gradient(ellipse 50% 15% at 50% 92%, rgba(255,255,255,0.55), transparent 80%),
+        radial-gradient(ellipse 22% 14% at 65% 35%, rgba(0,0,0,0.3), transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 1;
+    }
+
+    /* BRIAN BOX — bottom-left (start, clockwise) */
+    .p-brian   { bottom: 22%; left: 24%; width: clamp(70px, 12vmin, 130px); }
+    .p-brian .planet-body {
+      background:
+        repeating-linear-gradient(180deg,
+          transparent 0%, transparent 7%,
+          rgba(0,0,0,0.18) 7%, rgba(0,0,0,0.18) 8%,
+          transparent 8%, transparent 15%,
+          rgba(255,200,140,0.18) 15%, rgba(255,200,140,0.18) 16%),
+        radial-gradient(circle at 30% 25%, #f4d39c 0%, #b87333 50%, #4a2812 100%);
+      --halo: rgba(184, 115, 51, 0.55);
+    }
+    .p-brian .planet-body::after {
+      background:
+        radial-gradient(ellipse 14% 8% at 60% 50%, rgba(40,20,0,0.55), transparent 70%),
+        radial-gradient(ellipse 8% 5%  at 30% 65%, rgba(40,20,0,0.4), transparent 70%);
+    }
+
+    /* PENNY — middle-left */
+    .p-penny   { top: 50%; left: 22%; transform: translateY(-50%); width: clamp(60px, 10vmin, 100px); }
+    .p-penny:hover { transform: translateY(-50%) scale(1.06); }
+    .p-penny .planet-body {
+      background:
+        radial-gradient(ellipse 40% 55% at 50% 50%, rgba(255,210,140,0.5), transparent 70%),
+        radial-gradient(circle at 30% 25%, #f7c98a 0%, #c0844a 50%, #5e2f0d 100%);
+      --halo: rgba(192, 132, 74, 0.5);
+    }
+    .p-penny .planet-body::after {
+      background:
+        radial-gradient(ellipse 24% 28% at 50% 48%, rgba(60,30,0,0.4), transparent 75%),
+        radial-gradient(ellipse 8% 4%  at 50% 78%, rgba(40,20,0,0.5), transparent 70%);
+    }
+
+    /* MULTIPLYING BRIAN — top-left */
+    .p-multi   { top: 22%; left: 24%; width: clamp(68px, 11vmin, 120px); }
+    .p-multi .planet-body {
+      background:
+        repeating-linear-gradient(180deg,
+          transparent 0 14%,
+          rgba(0,0,0,0.18) 14% 17%,
+          transparent 17% 28%,
+          rgba(255,230,180,0.18) 28% 31%,
+          transparent 31% 44%,
+          rgba(0,0,0,0.2) 44% 47%,
+          transparent 47% 60%,
+          rgba(255,200,140,0.18) 60% 64%),
+        radial-gradient(circle at 30% 25%, #ffe1b3 0%, #ff8c42 50%, #6f1f00 100%);
+      --halo: rgba(255, 140, 66, 0.55);
+    }
+    .p-multi .planet-body::after {
+      background:
+        radial-gradient(ellipse 18% 9% at 62% 56%, rgba(170,30,30,0.85), rgba(170,30,30,0.3) 60%, transparent 80%);
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    /* PROJECTS IN DEV — top-center (with rings) */
+    .p-future  { top: 16%; left: 50%; transform: translateX(-50%); width: clamp(72px, 12vmin, 130px); }
+    .p-future:hover { transform: translateX(-50%) scale(1.06); }
+    .p-future .planet-body {
+      background:
+        repeating-linear-gradient(180deg,
+          transparent 0 20%,
+          rgba(0,0,0,0.15) 20% 22%,
+          transparent 22% 45%,
+          rgba(200,168,255,0.15) 45% 47%,
+          transparent 47% 70%,
+          rgba(0,0,0,0.15) 70% 72%),
+        radial-gradient(circle at 30% 25%, #c8a8ff 0%, #6a3aae 50%, #1a0033 100%);
+      --halo: rgba(106, 58, 174, 0.55);
+    }
+
+    /* THE TEAM — top-right */
+    .p-team    { top: 22%; right: 24%; width: clamp(62px, 10vmin, 108px); }
+    .p-team .planet-body {
+      background:
+        radial-gradient(ellipse 24% 14% at 28% 38%, rgba(60,140,80,0.7), transparent 75%),
+        radial-gradient(ellipse 18% 10% at 65% 30%, rgba(60,140,80,0.55), transparent 75%),
+        radial-gradient(ellipse 22% 12% at 55% 65%, rgba(60,140,80,0.6), transparent 75%),
+        radial-gradient(ellipse 12% 7%  at 30% 78%, rgba(60,140,80,0.5), transparent 75%),
+        radial-gradient(circle at 30% 25%, #b5e8ee 0%, #2d7d8a 50%, #0a2a30 100%);
+      --halo: rgba(45, 125, 138, 0.55);
+    }
+
+    /* HIRING — bottom-right, bigger anchor planet */
+    .p-hire    { bottom: 22%; right: 24%; width: clamp(86px, 14vmin, 150px); z-index: 3; }
+
+    /* $5K — bottom-center, links to same place as Hiring */
+    .p-money   { bottom: 14%; left: 50%; transform: translateX(-50%); width: clamp(56px, 8.5vmin, 92px); }
+    .p-money:hover { transform: translateX(-50%) scale(1.06); }
+    .p-money .planet-body {
+      background:
+        repeating-linear-gradient(180deg,
+          transparent 0 30%,
+          rgba(0,0,0,0.12) 30% 32%,
+          transparent 32% 65%,
+          rgba(255,255,255,0.15) 65% 67%),
+        radial-gradient(circle at 30% 25%, #d6f5b8 0%, #4caf50 50%, #1b3d1f 100%);
+    }
+    .p-money .planet-body::after {
+      background:
+        radial-gradient(ellipse 22% 26% at 50% 50%, rgba(255,230,120,0.55), transparent 75%);
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+    .p-hire .planet-body {
+      background: radial-gradient(circle at 30% 25%, #ffd2e6 0%, #ff3399 45%, #4a002a 100%);
+      animation: hire-pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes hire-pulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.05); }
+    }
+    .p-hire .planet-label {
+      font-size: clamp(9px, 1.5vmin, 14px);
+      letter-spacing: 1.5px;
+      -webkit-text-stroke: 1.5px #000;
+    }
+    .p-hire .planet-label::after {
+      content: " ★";
+      color: var(--gold);
+    }
+
+    /* corner badges */
+    .corner-badge {
+      position: absolute;
+      font-family: "Press Start 2P", "VT323", monospace;
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 5px 8px;
+      background: rgba(26, 0, 51, 0.75);
+      text-transform: uppercase;
+      z-index: 4;
+      line-height: 1.6;
+    }
+    .corner-badge.tl { top: 14px; left: 14px; color: var(--hot); border-color: var(--hot); }
+    .corner-badge.tr { top: 14px; right: 14px; }
+    .corner-badge.bl { bottom: 14px; left: 14px; color: var(--cream); border-color: var(--cream); opacity: 0.75; }
+
+    /* small responsive */
+    @media (max-width: 820px) {
+      .p-brian   { bottom: 20%; left: 16%; }
+      .p-penny   { left: 14%; }
+      .p-multi   { top: 20%; left: 16%; }
+      .p-team    { top: 20%; right: 16%; }
+      .p-contact { right: 14%; }
+      .p-hire    { bottom: 20%; right: 16%; }
+    }
+
+    /* ================= SUB-PAGES (overlays) ================= */
+    .subpage {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.96);
+      z-index: 50;
+      display: none;
+      overflow-y: auto;
+      padding: 28px 16px 60px;
+    }
+    .subpage.open { display: block; }
+    .subpage-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #0e0623;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 40px rgba(255, 204, 51, 0.25);
+      padding: 24px 28px 32px;
+      color: var(--cream);
+      font-family: "VT323", monospace;
+      font-size: 19px;
+      line-height: 1.45;
+    }
+    .subpage h1 {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 30px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin: 0 0 4px;
+      text-shadow: 2px 2px 0 #ff3399;
+    }
+    .subpage h2 {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 18px;
+      letter-spacing: 1.5px;
+      color: var(--hot);
+      margin: 24px 0 8px;
+    }
+    .subpage h3 {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin: 16px 0 4px;
+    }
+    .subpage p { margin: 0 0 12px; }
+    .subpage ul { padding-left: 22px; margin: 0 0 12px; }
+    .subpage li { margin: 4px 0; }
+    .subpage .meta-strip {
+      font-family: "VT323", monospace;
+      font-size: 16px;
+      color: var(--gold);
+      margin-bottom: 14px;
+      border-bottom: 1px dashed rgba(255, 204, 51, 0.3);
+      padding-bottom: 8px;
+    }
+    .subpage .meta-strip span { margin-right: 16px; }
+    .back-to-space {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 4px 10px;
+      background: var(--gold);
+      color: #1a0033;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .back-to-space:hover { background: var(--hot); color: #fff; }
+
+    .hero-art {
+      height: 160px;
+      background: linear-gradient(135deg, #1a0033 0%, #4a002a 100%);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 36px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-shadow: 3px 3px 0 var(--hot);
+      margin-bottom: 16px;
+    }
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      height: 210px;
+      border: 2px solid var(--gold);
+      margin-bottom: 16px;
+      background: #0a0014;
+      box-shadow: inset 0 0 0 3px #1a0033;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.08) contrast(1.06);
+    }
+    .hero-image::after {
+      content: attr(data-caption);
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      background: rgba(10, 0, 20, 0.82);
+      border: 1px dashed var(--gold);
+      color: var(--gold);
+      font-family: "Press Start 2P", "VT323", monospace;
+      font-size: 9px;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      padding: 7px 8px;
+      text-transform: uppercase;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .stat-cell {
+      background: #1a0033;
+      border: 1px solid var(--hot);
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .stat-cell .num {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 24px;
+      color: var(--gold);
+    }
+    .stat-cell .lbl {
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.8;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .pill {
+      background: #1a0033;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 3px 10px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: #1a0033;
+      border: 1px solid var(--hot);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .card .card-title {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .card .card-meta {
+      font-size: 14px;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 600px) { .team-grid { grid-template-columns: 1fr; } }
+    .team-card {
+      background: #1a0033;
+      border: 1px solid var(--gold);
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .team-avatar {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #ffd2e6 0%, #ff3399 50%, #4a002a 100%);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 22px;
+      color: #fff;
+    }
+    .team-name {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 14px;
+      color: var(--gold);
+    }
+    .team-role { font-size: 15px; opacity: 0.85; }
+
+    /* ================= HIRING SUB-PAGE ================= */
+    .role-banner {
+      background: linear-gradient(90deg, var(--hot) 0%, var(--gold) 50%, var(--hot) 100%);
+      background-size: 200% 100%;
+      animation: rainbow 4s linear infinite;
+      color: #1a0033;
+      padding: 12px;
+      text-align: center;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      border: 2px dashed #1a0033;
+    }
+    @keyframes rainbow {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .job-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 600px) { .job-cols { grid-template-columns: 1fr; } }
+    .job-col h3 { margin-top: 0; }
+
+    .perks-strip {
+      background: #4a002a;
+      border: 2px dashed var(--gold);
+      padding: 10px 14px;
+      text-align: center;
+      margin: 14px 0;
+      font-size: 17px;
+      color: var(--cream);
+    }
+    .perks-strip strong { color: var(--gold); }
+
+    /* ================= TASTE TEST ================= */
+    .taste-wrap {
+      background: #1a0033;
+      border: 2px solid var(--hot);
+      padding: 16px;
+      margin-top: 8px;
+    }
+    .taste-intro { font-size: 18px; }
+    .taste-stage { display: none; margin-top: 12px; }
+    .taste-stage.active { display: block; }
+
+    .taste-card {
+      background: #0a0014;
+      border: 1px solid var(--gold);
+      padding: 16px;
+      text-align: center;
+    }
+    .taste-card .teaser {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 22px;
+      color: var(--gold);
+      line-height: 1.2;
+      margin-bottom: 6px;
+      text-shadow: 2px 2px 0 var(--hot);
+    }
+    .taste-card .source {
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+    .clip-link {
+      display: inline-block;
+      margin: 4px 0 14px;
+      padding: 6px 12px;
+      background: var(--gold);
+      color: #1a0033;
+      border: 1px solid #1a0033;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+    .clip-link:hover { background: var(--hot); color: #fff; }
+
+    .taste-buttons { display: flex; gap: 12px; justify-content: center; }
+    .taste-buttons.hidden { display: none; }
+    .vote-btn {
+      background: var(--gold);
+      color: #1a0033;
+      border: 2px solid #1a0033;
+      padding: 8px 18px;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--hot);
+    }
+    .vote-btn:hover { background: var(--hot); color: #fff; }
+    .vote-btn.cold { background: #2d7d8a; color: #fff; }
+    .vote-btn.cold:hover { background: var(--hot); }
+
+    .taste-reveal {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      background: #4a002a;
+      border: 2px dashed var(--gold);
+    }
+    .taste-reveal.show { display: block; }
+    .reveal-mark {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .reveal-mark.correct { color: #b6ff8c; }
+    .reveal-mark.wrong   { color: #ff8c8c; }
+    .reveal-line {
+      font-size: 17px;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .next-btn {
+      background: var(--hot);
+      color: #fff;
+      border: 2px solid #1a0033;
+      padding: 6px 14px;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+    .next-btn:hover { background: var(--gold); color: #1a0033; }
+    .taste-progress {
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .taste-result {
+      background: #0a0014;
+      border: 3px double var(--gold);
+      padding: 20px;
+      text-align: center;
+    }
+    .taste-result h3 {
+      font-family: "Bungee", "Impact", sans-serif;
+      color: var(--hot);
+      font-size: 22px;
+      margin: 0 0 6px;
+    }
+    .taste-result .score {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 56px;
+      color: var(--gold);
+      text-shadow: 3px 3px 0 var(--hot);
+      line-height: 1;
+    }
+    .taste-result .verdict {
+      font-size: 18px;
+      margin: 12px 0;
+      color: var(--cream);
+    }
+    .taste-result .actions {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    /* ================= FORMS ================= */
+    .form-row { margin: 10px 0; }
+    .form-row label {
+      display: block;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .form-row input, .form-row textarea {
+      width: 100%;
+      padding: 8px 10px;
+      background: #0a0014;
+      color: var(--cream);
+      border: 1px solid var(--gold);
+      font-family: "VT323", monospace;
+      font-size: 18px;
+    }
+    .form-row textarea { min-height: 70px; resize: vertical; }
+    .submit-btn {
+      background: var(--gold);
+      color: #1a0033;
+      border: 2px solid var(--hot);
+      padding: 10px 22px;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--hot);
+    }
+    .submit-btn:hover { background: var(--hot); color: #fff; }
+    .form-success {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      background: #4a002a;
+      border: 2px dashed var(--gold);
+      text-align: center;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 16px;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .form-success.show { display: block; }
+
+    /* ================= FOOTER ================= */
+    .bottom-marquee {
+      background: #1a0033;
+      color: var(--hot);
+      font-family: "VT323", monospace;
+      font-size: 16px;
+      border-top: 1px solid #330066;
+      padding: 4px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-line {
+      text-align: center;
+      font-family: "VT323", monospace;
+      font-size: clamp(11px, 1.4vmin, 14px);
+      color: var(--cream);
+      opacity: 0.6;
+      padding: 6px 16px 10px;
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    /* ================= SPARKLE ================= */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      color: var(--gold);
+      font-size: 14px;
+      z-index: 9999;
+      animation: sparkle-fade 0.9s linear forwards;
+    }
+    @keyframes sparkle-fade {
+      0%   { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-30px) scale(0.4); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="starfield"></div>
+<div class="stars" id="stars-container">
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+</div>
+
+<!-- HOME / UNIVERSE -->
+<div class="universe" id="home">
+
+  <!-- THE SUN: RAMP -->
+  <div class="sun-wrap">
+    <div class="sun-halo"></div>
+    <div class="sun-orbit"><span class="orbiter">★</span></div>
+    <div class="sun-orbit r2"><span class="orbiter">💰</span></div>
+    <div class="sun">
+      <span class="sun-stars-l">★</span>
+      <div class="sun-logo">RAMP</div>
+      <div class="sun-subline">CREATIVE<br>EXPERIMENTATION<br>TEAM</div>
+      <span class="sun-stars-r">★</span>
+    </div>
+  </div>
+
+  <!-- PLANETS -->
+  <a href="#contact" class="planet p-contact" data-page="contact">
+    <div class="planet-body"></div>
+    <div class="planet-label">CONTACT US</div>
+  </a>
+
+  <a href="#brian-box" class="planet p-brian" data-page="brian-box">
+    <div class="planet-body"></div>
+    <div class="planet-label">BRIAN BOX<br>STUNT</div>
+  </a>
+
+  <a href="#funeral-penny" class="planet p-penny" data-page="funeral-penny">
+    <div class="planet-body"></div>
+    <div class="planet-label">FUNERAL<br>FOR THE<br>PENNY</div>
+  </a>
+
+  <a href="#multiplying-brian" class="planet p-multi" data-page="multiplying-brian">
+    <div class="planet-body"></div>
+    <div class="planet-label">MULTIPLYING<br>BRIAN</div>
+  </a>
+
+  <a href="#projects-development" class="planet p-future" data-page="projects-development">
+    <div class="ring back"></div>
+    <div class="planet-body"></div>
+    <div class="ring front"></div>
+    <div class="planet-label">PROJECTS IN<br>DEVELOPMENT</div>
+  </a>
+
+  <a href="#team" class="planet p-team" data-page="team">
+    <div class="planet-body"></div>
+    <div class="planet-label">THE TEAM</div>
+  </a>
+
+  <a href="#hiring" class="planet p-hire" data-page="hiring">
+    <div class="planet-body"></div>
+    <div class="planet-label">WE'RE<br>HIRING!</div>
+  </a>
+
+  <a href="#hiring" class="planet p-money" data-page="hiring">
+    <div class="planet-body"></div>
+    <div class="planet-label">WE'LL GIVE<br>YOU $5K</div>
+  </a>
+
+</div>
+
+<div class="footer-line">© 2026 RAMP, INC. · creative experimentation division · an homage to the greatest athletes of all time, MJ and BB</div>
+
+
+<!-- ============================================== -->
+<!-- SUB-PAGES                                      -->
+<!-- ============================================== -->
+
+<!-- CONTACT US -->
+<div class="subpage" id="page-contact">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <div class="hero-art">📡 OPEN TRANSMISSION</div>
+    <h1>CONTACT US</h1>
+    <div class="meta-strip">
+      <span>Channel: open</span>
+      <span>Response time: when we feel like it</span>
+      <span>Spam: nuked on sight</span>
+    </div>
+
+    <p>this is where you reach the creative experimentation team. pitch us a stunt, propose a collab, send press, propose talent, or just say hi. one form, one human reads it.</p>
+
+    <div style="background: #4a002a; border: 2px dashed var(--gold); padding: 10px 14px; margin: 14px 0; text-align: center;">
+      <strong style="color: var(--gold);">★ applying for the role?</strong> &nbsp;
+      <a href="#hiring" class="clip-link" data-page="hiring" style="margin: 0;">go to WE'RE HIRING →</a>
+    </div>
+
+    <form id="contact-form" onsubmit="return submitContact(event)">
+      <div class="form-row">
+        <label>your name</label>
+        <input type="text" name="contactName" required>
+      </div>
+      <div class="form-row">
+        <label>your handle or email</label>
+        <input type="text" name="contactHandle" placeholder="@you or you@somewhere.com" required>
+      </div>
+      <div class="form-row">
+        <label>what's this about?</label>
+        <select name="contactReason" required style="width:100%;padding:8px 10px;background:#0a0014;color:var(--cream);border:1px solid var(--gold);font-family:'VT323',monospace;font-size:18px;">
+          <option value="">- pick one -</option>
+          <option value="pitch">i have a stunt idea</option>
+          <option value="talent">i'm talent / a creator who wants to work with you</option>
+          <option value="press">press / journalist</option>
+          <option value="vendor">production partner / vendor</option>
+          <option value="brand">brand collab</option>
+          <option value="other">other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>the message</label>
+        <textarea name="contactBody" placeholder="be specific. we read these." required></textarea>
+      </div>
+      <div style="text-align:center;margin-top:14px;">
+        <button class="submit-btn" type="submit">★ TRANSMIT ★</button>
+      </div>
+    </form>
+    <div class="form-success" id="contact-success">
+      ✦ TRANSMISSION RECEIVED ✦<br>we'll get back to you if it's good.
+    </div>
+
+    <h2>★ or find us in the wild</h2>
+    <ul>
+      <li>kendall (head of creative experimentation): kendall.tucker@ramp.com</li>
+      <li>amber (creative producer): amber.layne@ramp.com</li>
+      <li>on the internet: wherever ramp's stunts get reposted</li>
+    </ul>
+  </div>
+</div>
+
+<!-- BRIAN BOX -->
+<div class="subpage" id="page-brian-box">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <div class="hero-image" data-caption="Brian Box Stunt: one accountant, too many receipts">
+      <img src="assets/brian-box.jpg" alt="Brian Baumgartner inside the Ramp box stunt">
+    </div>
+    <h1>BRIAN BOX STUNT</h1>
+    <div class="meta-strip">
+      <span>Year: 2025</span>
+      <span>Status: 📈 worked</span>
+      <span>Location: Flatiron, NYC</span>
+    </div>
+
+    <p>Brian Baumgartner sat inside a giant box in Flatiron Plaza doing expense reports in public while receipts nearly swallowed him whole. The bit was simple enough to explain in one frame and weird enough to stop people walking by.</p>
+
+    <h2>the highlights</h2>
+    <div class="stat-row">
+      <div class="stat-cell"><div class="num">1</div><div class="lbl">box</div></div>
+      <div class="stat-cell"><div class="num">∞</div><div class="lbl">earned coverage</div></div>
+      <div class="stat-cell"><div class="num">📈</div><div class="lbl">huge demand lift</div></div>
+    </div>
+
+    <h2>why it worked</h2>
+    <ul>
+      <li>casting: the most famous accountant in television history, doing the most annoying finance task in public.</li>
+      <li>the image explained itself: a man, a box, a flood of receipts.</li>
+      <li>the logistics were invisible. the moment felt ridiculous, not overproduced.</li>
+    </ul>
+
+    <h2>what would have killed it</h2>
+    <ul>
+      <li>a concept that needed a paragraph to understand.</li>
+      <li>a talent choice with no finance-world resonance.</li>
+      <li>one missed permit, release, printer, or crowd-control detail.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FUNERAL FOR THE PENNY -->
+<div class="subpage" id="page-funeral-penny">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <div class="hero-art">⚰️ RIP 1¢</div>
+    <h1>FUNERAL FOR THE PENNY</h1>
+    <div class="meta-strip">
+      <span>Year: 2025</span>
+      <span>Status: 🪦 noble miss</span>
+      <span>RSVPs: 700+</span>
+    </div>
+
+    <p>we threw the penny a real funeral at the Lincoln Memorial at exactly 1:01 PM. funeral clothes, lincoln impersonators, a casket full of pennies, one second of silence.</p>
+
+    <h2>the highlights</h2>
+    <div class="stat-row">
+      <div class="stat-cell"><div class="num">700+</div><div class="lbl">RSVPs</div></div>
+      <div class="stat-cell"><div class="num">📉</div><div class="lbl">no demand lift</div></div>
+      <div class="stat-cell"><div class="num">1:01</div><div class="lbl">start time</div></div>
+    </div>
+
+    <h2>what we learned</h2>
+    <ul>
+      <li>people post when costume + IRL attendance + "i got the joke" all converge.</li>
+      <li>a beautiful concept can still miss if the product tie is too soft.</li>
+      <li>the best lessons sometimes wear a top hat and mourn a coin.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MULTIPLYING BRIAN -->
+<div class="subpage" id="page-multiplying-brian">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <div class="hero-art">🪞 BRIAN x BRIAN x BRIAN</div>
+    <h1>MULTIPLYING BRIAN</h1>
+    <div class="meta-strip">
+      <span>Year: 2026</span>
+      <span>Status: 🏈 super bowl</span>
+      <span>Talent: x10</span>
+    </div>
+
+    <p>Ten Brians. One Super Bowl. We multiplied the most famous accountant in the world, then sent the Brians through a tailgate, a livestream, a pageant, and the stadium stands.</p>
+
+    <h2>the highlights</h2>
+    <div class="stat-row">
+      <div class="stat-cell"><div class="num">10</div><div class="lbl">Brians</div></div>
+      <div class="stat-cell"><div class="num">1</div><div class="lbl">Super Bowl</div></div>
+      <div class="stat-cell"><div class="num">📈</div><div class="lbl">huge demand lift</div></div>
+    </div>
+
+    <h2>the takeaway</h2>
+    <p>the stunt mechanic is portable. the trick is taste: knowing which premise scales, which talent earns the camera, and which detail quietly kills the moment if missed.</p>
+  </div>
+</div>
+
+<!-- PROJECTS IN DEVELOPMENT -->
+<div class="subpage" id="page-projects-development">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <div class="hero-art">🔭 CLASSIFIED</div>
+    <h1>PROJECTS IN DEVELOPMENT</h1>
+    <div class="meta-strip">
+      <span>In flight: several</span>
+      <span>Status: 🤫</span>
+      <span>Public reveal: when they post</span>
+    </div>
+
+    <p style="font-size: 22px; text-align: center; margin: 30px 0;"><strong>wouldn't you like to know. 🍹</strong></p>
+
+    <p style="text-align: center;">we don't give away our secrets without you buying us at least 2 margaritas.</p>
+
+    <p style="text-align: center; margin-top: 18px;">apply to our open role and make it to an interview — we'll tell you everything.</p>
+
+    <p style="text-align: center; margin-top: 24px;">
+      <a href="#hiring" class="back-to-space" data-page="hiring" style="display: inline-block;">★ WE'RE HIRING →</a>
+    </p>
+  </div>
+</div>
+
+<!-- THE TEAM -->
+<div class="subpage" id="page-team">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <div class="hero-art">🪐 THE CREW</div>
+    <h1>THE TEAM</h1>
+    <div class="meta-strip">
+      <span>Roster: small (on purpose)</span>
+      <span>Reports to: growth marketing</span>
+    </div>
+
+    <p>we do stunts, videos, and influencer stuff. we are also, according to Notion, the funnest and best looking team at Ramp.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">K</div>
+        <div>
+          <div class="team-name">KENDALL TUCKER</div>
+          <div class="team-role">Head of Creative Experimentation. obsessed with stunts. will fight you about casting.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: radial-gradient(circle at 30% 25%, #f4d39c 0%, #b87333 55%, #4a2812 100%);">A</div>
+        <div>
+          <div class="team-name">AMBER LAYNE</div>
+          <div class="team-role">Creative Producer. boxed Brian. buried the penny. why we need a second one of her.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: radial-gradient(circle at 30% 25%, #c8a8ff 0%, #6a3aae 55%, #1a0033 100%);">?</div>
+        <div>
+          <div class="team-name">[YOU]</div>
+          <div class="team-role">Viral Creative Producer. has personally caused at least one viral moment. about to cause more.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: radial-gradient(circle at 30% 25%, #b5e8ee 0%, #2d7d8a 55%, #0a2a30 100%);">+</div>
+        <div>
+          <div class="team-name">CONTRACTORS / TALENT</div>
+          <div class="team-role">a rotating cast of producers, directors, comedians, accountants in costume.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>how we work</h2>
+    <ul>
+      <li>concept to execution to clips. we own all three.</li>
+      <li>we argue. we argue more. then we ship.</li>
+      <li>everything is measured. views, shares, downstream impact. no stunt without a number on it.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- WE'RE HIRING (the big one) -->
+<div class="subpage" id="page-hiring">
+  <div class="subpage-inner">
+    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+
+    <div class="role-banner">★ NOW HIRING ★ <span class="blink">VIRAL CREATIVE PRODUCER</span> ★ $5K REFERRAL BOUNTY ★</div>
+
+    <h1>VIRAL CREATIVE PRODUCER</h1>
+    <div class="meta-strip">
+      <span>📍 NYC / Remote</span>
+      <span>💼 Full-time</span>
+      <span>👤 Reports to: Kendall Tucker</span>
+    </div>
+
+    <p><strong>tl;dr:</strong> stunts are ramp's highest-leverage growth surface. the brian box landed with real downstream impact at near-zero cost. the super bowl run did even more. five more stunts are in motion. we need another amber. that's you, maybe.</p>
+
+    <p><strong>the bar is unusual:</strong> we are not hiring a creative producer who has shipped customer marketing videos at an agency. we are hiring someone who has <em>personally caused a viral moment.</em> built their own audience from real creative work, or produced an event/stunt that punctured culture. receipts required.</p>
+
+    <div class="job-cols">
+      <div class="job-col">
+        <h3>★ what you'd own</h3>
+        <ul>
+          <li>stunts end to end: concept to execution to clips</li>
+          <li>casting talent, creators, IRL characters</li>
+          <li>permits, releases, COIs, vendors</li>
+          <li>posting, collab tags, amplification</li>
+          <li>measurement: views, shares, pipeline impact</li>
+        </ul>
+      </div>
+      <div class="job-col">
+        <h3>★ who you are</h3>
+        <ul>
+          <li>built your own social following from real work, OR</li>
+          <li>produced events/stunts that broke through online</li>
+          <li>internet-native taste with receipts</li>
+          <li>obsessed: who's doing it, what's working, what's not</li>
+          <li>the kind of person anthpo would dm back</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="perks-strip">
+      <strong>real swings</strong> · stunts that get noticed · a head of creative experimentation who will fight you (lovingly)
+    </div>
+
+    <h2>★ the taste test</h2>
+    <p>but first: taste. AI can't grade this. <strong>score 9 or 10 to unlock the application.</strong></p>
+
+    <div class="taste-wrap">
+      <div class="taste-intro" id="taste-intro">
+        <p>10 cards. each is a real thing on the internet. open it in a new tab. vote HOT or NOT. we graded these in advance with the team. score 9+ and we unlock the apply form. anything less, you'll get a screenshot-worthy verdict.</p>
+        <p style="text-align:center;margin-top:14px;">
+          <button class="submit-btn" id="start-taste">★ START THE TASTE TEST ★</button>
+        </p>
+      </div>
+
+      <div class="taste-stage" id="taste-stage">
+        <div class="taste-card">
+          <div class="teaser" id="teaser"></div>
+          <div class="source" id="source"></div>
+          <a id="clipLink" class="clip-link" href="#" target="_blank" rel="noopener">▶ open in new tab</a>
+          <div class="taste-buttons" id="voteButtons">
+            <button class="vote-btn" data-vote="hot">🔥 HOT</button>
+            <button class="vote-btn cold" data-vote="not">❄️ NOT</button>
+          </div>
+          <div class="taste-reveal" id="reveal">
+            <div class="reveal-mark" id="revealMark"></div>
+            <div class="reveal-line" id="revealLine"></div>
+            <button class="next-btn" id="nextBtn">→ NEXT</button>
+          </div>
+          <div class="taste-progress" id="progress"></div>
+        </div>
+      </div>
+
+      <div class="taste-stage" id="taste-result-stage">
+        <div class="taste-result">
+          <h3>your taste is...</h3>
+          <div class="score"><span id="score">0</span>/10</div>
+          <div class="verdict" id="verdict"></div>
+          <div class="actions">
+            <button class="next-btn" id="share-score">★ SHARE MY SCORE ★</button>
+            <button class="next-btn" id="restart">↻ RETAKE</button>
+          </div>
+          <div id="unlock-zone" style="margin-top:14px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLY -->
+    <h2 id="apply-anchor">★ apply (no resumes)</h2>
+    <p>three fields. that's it. the rest we'll figure out on a call.</p>
+    <form id="apply-form" onsubmit="return submitApply(event)">
+      <div class="form-row">
+        <label>your handle</label>
+        <input type="text" name="handle" placeholder="@yourhandle" required>
+      </div>
+      <div class="form-row">
+        <label>link to the thing you're proudest of</label>
+        <input type="url" name="link" placeholder="https://..." required>
+      </div>
+      <div class="form-row">
+        <label>one sentence on how it happened</label>
+        <textarea name="story" required></textarea>
+      </div>
+      <div class="form-row">
+        <label>numbers (views / reposts / press / pipeline)</label>
+        <input type="text" name="numbers" placeholder="2M views, 14k reposts, picked up by [outlet]" required>
+      </div>
+      <div style="text-align:center;margin-top:14px;">
+        <button class="submit-btn" type="submit">★ SEND IT ★</button>
+      </div>
+    </form>
+    <div class="form-success" id="apply-success">
+      ✦ TRANSMISSION RECEIVED ✦<br>kendall will get back to you.
+    </div>
+
+    <!-- REFER -->
+    <h2>★ refer someone ($5,000)</h2>
+    <p>know the right person? drop their handle. if we hire them, you get $5,000 in a ramp diamond-card-style package with a handwritten note. the delivery is the next stunt.</p>
+    <form id="refer-form" onsubmit="return submitRefer(event)">
+      <div class="form-row">
+        <label>their handle</label>
+        <input type="text" name="theirHandle" required>
+      </div>
+      <div class="form-row">
+        <label>one sentence on why they'll cause virality</label>
+        <textarea name="why" required></textarea>
+      </div>
+      <div class="form-row">
+        <label>your handle (so we can pay you)</label>
+        <input type="text" name="yourHandle" required>
+      </div>
+      <div style="text-align:center;margin-top:14px;">
+        <button class="submit-btn" type="submit">★ POST THE BOUNTY ★</button>
+      </div>
+    </form>
+    <div class="form-success" id="refer-success">
+      ✦ BOUNTY POSTED ✦<br>if we hire them, you get $5K and a story to tell.
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // ========== STARFIELD ==========
+  (function makeStars() {
+    const field = document.getElementById('stars-container');
+    if (!field) return;
+    const count = 260;
+    for (let n = 0; n < count; n++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const r = Math.random();
+      const size = r < 0.78 ? 1 : r < 0.94 ? 2 : 3;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = (Math.random() * 100) + '%';
+      s.style.top  = (Math.random() * 100) + '%';
+      s.style.opacity = (0.35 + Math.random() * 0.65).toFixed(2);
+      if (Math.random() < 0.12) s.classList.add('twinkle');
+      if (Math.random() < 0.08) s.classList.add('gold');
+      if (s.classList.contains('twinkle')) {
+        s.style.animationDelay = (Math.random() * 3).toFixed(2) + 's';
+      }
+      field.appendChild(s);
+    }
+  })();
+
+  // ========== SPARKLE CURSOR ==========
+  document.addEventListener('mousemove', (e) => {
+    if (Math.random() > 0.92) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.textContent = ['✨','★','✦','✧'][Math.floor(Math.random()*4)];
+      s.style.left = e.pageX + 'px';
+      s.style.top  = (e.pageY - window.scrollY) + 'px';
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 900);
+    }
+  });
+
+  // ========== PLANET NAV ==========
+  function openPage(id) {
+    document.querySelectorAll('.subpage.open').forEach(el => el.classList.remove('open'));
+    const page = document.getElementById('page-' + id);
+    if (page) {
+      page.classList.add('open');
+      page.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  }
+  function closePage() {
+    document.querySelectorAll('.subpage.open').forEach(el => el.classList.remove('open'));
+    history.replaceState(null, '', '#');
+  }
+
+  document.querySelectorAll('[data-page]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.getAttribute('data-page');
+      history.replaceState(null, '', '#' + id);
+      openPage(id);
+    });
+  });
+
+  document.querySelectorAll('[data-back]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closePage();
+    });
+  });
+
+  // open from URL hash on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const h = window.location.hash.replace('#', '');
+    if (h) openPage(h);
+  });
+
+  // esc closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePage();
+  });
+
+
+  // ========== TASTE TEST ==========
+  const stunts = [
+    {
+      teaser: "an instagram reel by some guy promoting his app",
+      source: "instagram",
+      url: "https://www.instagram.com/p/DYQO7Z9RT7n/",
+      truth: "hot",
+      wrong: "i don't know this person and i'm not promoting his app but you're wrong and this is really cool."
+    },
+    {
+      teaser: "ben rice promoting ben's rice",
+      source: "@TalkinYanks · X",
+      url: "https://x.com/TalkinYanks/status/2036097909180023178",
+      truth: "hot",
+      wrong: "you don't think ben rice promoting ben's rice is cool? go get a job at linkedin."
+    },
+    {
+      teaser: "taco bell × baja blast under-eye patches",
+      source: "USA Today",
+      url: "https://www.usatoday.com/story/money/food/2026/03/11/taco-bell-baja-blast-under-eye-patches/89101312007/",
+      truth: "hot",
+      wrong: "it may not be for you, but it's culture."
+    },
+    {
+      teaser: "an instagram reel that made me laugh out loud",
+      source: "instagram",
+      url: "https://www.instagram.com/p/DYFs-0xJF3D/",
+      truth: "hot",
+      wrong: "this is hilarious. laugh you corporate drone."
+    },
+    {
+      teaser: "did you miss the teeth?",
+      source: "@TheCatsX · X",
+      url: "https://x.com/TheCatsX/status/2054902047330148738",
+      truth: "hot",
+      wrong: "sorry, did you miss the teeth?"
+    },
+    {
+      teaser: "drinking is back",
+      source: "@Al_Brown313 · X",
+      url: "https://x.com/Al_Brown313/status/2054551603517006151",
+      truth: "hot",
+      wrong: "drinking is back in, pay attention."
+    },
+    {
+      teaser: "fake history. real dogs.",
+      source: "@fakehistoryhunt · X",
+      url: "https://x.com/fakehistoryhunt/status/2054330542795952609",
+      truth: "hot",
+      wrong: "dogs are always cool. learn from this."
+    },
+    {
+      teaser: "@thebroker.age",
+      source: "tiktok",
+      url: "https://www.tiktok.com/@thebroker.age",
+      truth: "not",
+      wrong: "what did you think was cool about this? i must've missed it when i fell asleep."
+    },
+    {
+      teaser: "a general catalyst tweet",
+      source: "@generalcatalyst · X",
+      url: "https://x.com/generalcatalyst/status/2054602972483797274",
+      truth: "not",
+      wrong: "i'm not getting into why this is wrong."
+    },
+    {
+      teaser: "mts.live posts a thing",
+      source: "@MTSlive · X",
+      url: "https://x.com/MTSlive/status/2054957415058018443",
+      truth: "not",
+      wrong: "i don't like pale imitations of beautiful things."
+    }
+  ];
+
+  let i = 0, score = 0;
+  const intro       = document.getElementById('taste-intro');
+  const stage       = document.getElementById('taste-stage');
+  const resultStage = document.getElementById('taste-result-stage');
+  const teaser      = document.getElementById('teaser');
+  const source      = document.getElementById('source');
+  const clipLink    = document.getElementById('clipLink');
+  const progress    = document.getElementById('progress');
+  const voteButtons = document.getElementById('voteButtons');
+  const reveal      = document.getElementById('reveal');
+  const revealMark  = document.getElementById('revealMark');
+  const revealLine  = document.getElementById('revealLine');
+
+  document.getElementById('start-taste').addEventListener('click', () => {
+    intro.style.display = 'none';
+    stage.classList.add('active');
+    renderCard();
+  });
+
+  function renderCard() {
+    if (i >= stunts.length) return showResult();
+    const s = stunts[i];
+    teaser.textContent  = s.teaser;
+    source.textContent  = s.source;
+    clipLink.href       = s.url;
+    progress.textContent = `card ${i + 1} of ${stunts.length} · score: ${score}`;
+    voteButtons.classList.remove('hidden');
+    reveal.classList.remove('show');
+  }
+
+  document.querySelectorAll('[data-vote]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const vote = btn.dataset.vote;
+      const correct = vote === stunts[i].truth;
+      if (correct) score++;
+      voteButtons.classList.add('hidden');
+      revealMark.className = 'reveal-mark ' + (correct ? 'correct' : 'wrong');
+      revealMark.textContent = correct ? '✓ correct.' : '✗ wrong.';
+      revealLine.textContent = correct ? '' : stunts[i].wrong;
+      reveal.classList.add('show');
+    });
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    i++;
+    renderCard();
+  });
+
+  function showResult() {
+    stage.classList.remove('active');
+    resultStage.classList.add('active');
+    document.getElementById('score').textContent = score;
+    const verdict = document.getElementById('verdict');
+    const unlock  = document.getElementById('unlock-zone');
+    if (score >= 9) {
+      verdict.innerHTML = "<strong>your taste checks out.</strong> apply below. tell kendall you scored " + score + "/10.";
+      unlock.innerHTML  = "<a href='#apply-anchor' class='clip-link'>★ unlocked: scroll to apply ★</a>";
+    } else if (score >= 7) {
+      verdict.innerHTML = "<strong>close.</strong> not the hire, but you know one. refer them, get $5K.";
+      unlock.innerHTML  = "<a href='#apply-anchor' class='clip-link'>★ scroll to refer someone ★</a>";
+    } else {
+      verdict.innerHTML = "<strong>your taste isn't there yet.</strong> screenshot this and send it to the friend who scored higher.";
+      unlock.innerHTML  = "<a href='#apply-anchor' class='clip-link'>★ refer the right friend ★</a>";
+    }
+  }
+
+  document.getElementById('restart').addEventListener('click', () => {
+    i = 0; score = 0;
+    resultStage.classList.remove('active');
+    intro.style.display = 'block';
+  });
+
+  document.getElementById('share-score').addEventListener('click', () => {
+    const text = `i scored ${score}/10 on ramp's taste test ✨ they're hiring a viral creative producer`;
+    if (navigator.share) {
+      navigator.share({ text });
+    } else {
+      navigator.clipboard.writeText(text);
+      alert('copied to clipboard ✨');
+    }
+  });
+
+
+  // ========== FORM HANDLERS ==========
+  function submitApply(e) {
+    e.preventDefault();
+    document.getElementById('apply-form').style.display = 'none';
+    document.getElementById('apply-success').classList.add('show');
+    return false;
+  }
+  function submitRefer(e) {
+    e.preventDefault();
+    document.getElementById('refer-form').style.display = 'none';
+    document.getElementById('refer-success').classList.add('show');
+    return false;
+  }
+  function submitContact(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('contact-success').classList.add('show');
+    return false;
+  }
+</script>
+
+</body>
+</html>
