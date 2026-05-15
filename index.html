@@ -14,10 +14,21 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RAMP :: Creative Experimentation Team</title>
+  <title>RAMP :: Creative Experimentation Team — now hiring</title>
+  <meta name="description" content="Ramp's Creative Experimentation team is hiring a Viral Creative Producer. Take the taste test. Score 9 or 10 to unlock the application.">
+  <meta property="og:title" content="RAMP :: Creative Experimentation Team — now hiring">
+  <meta property="og:description" content="Take the taste test. Score 9 or 10 to unlock the application. We're hiring a viral creative producer.">
+  <meta property="og:image" content="https://kendallhtucker.github.io/creative-experimentation/assets/share-card.jpg">
+  <meta property="og:url" content="https://kendallhtucker.github.io/creative-experimentation/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RAMP :: Creative Experimentation Team — now hiring">
+  <meta name="twitter:description" content="Take the taste test. Score 9 or 10 to unlock the application.">
+  <meta name="twitter:image" content="https://kendallhtucker.github.io/creative-experimentation/assets/share-card.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bowlby+One&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <style>
     :root {
       --bg: #000;
@@ -234,7 +245,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       width: max-content;
       max-width: 100%;
       font-family: "Bungee", "Impact", sans-serif;
-      font-size: clamp(7px, 1vmin, 10px);
+      font-size: clamp(8px, 1.6vmin, 16px);
       letter-spacing: 3px;
       color: var(--cream);
       text-shadow: 1px 1px 0 var(--hot);
@@ -507,12 +518,12 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
     /* small responsive */
     @media (max-width: 820px) {
-      .p-brian   { bottom: 20%; left: 16%; }
-      .p-penny   { left: 14%; }
-      .p-multi   { top: 20%; left: 16%; }
-      .p-team    { top: 20%; right: 16%; }
-      .p-contact { right: 14%; }
-      .p-hire    { bottom: 20%; right: 16%; }
+      .p-brian   { bottom: 20%; left: 6%; }
+      .p-penny   { left: 3%; }
+      .p-multi   { top: 20%; left: 6%; }
+      .p-team    { top: 20%; right: 6%; }
+      .p-contact { right: 3%; }
+      .p-hire    { bottom: 20%; right: 6%; }
     }
 
     /* ================= SUB-PAGES (overlays) ================= */
@@ -523,9 +534,13 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       z-index: 50;
       display: none;
       overflow-y: auto;
-      padding: 28px 16px 60px;
+      padding: 28px 16px 0;
     }
-    .subpage.open { display: block; }
+    .subpage.open {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .subpage-inner {
       max-width: 800px;
       margin: 0 auto;
@@ -572,6 +587,67 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       padding-bottom: 8px;
     }
     .subpage .meta-strip span { margin-right: 16px; }
+    .placeholder-flag {
+      color: var(--hot);
+      font-style: italic;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    .page-logo {
+      text-align: center;
+      margin: 4px 0 22px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .page-logo:hover { transform: scale(1.02); }
+    .page-logo-ramp {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(40px, 9vmin, 80px);
+      font-weight: 700;
+      letter-spacing: 5px;
+      line-height: 0.9;
+      color: var(--gold);
+      text-shadow:
+        4px 4px 0 var(--hot),
+        8px 8px 0 #4a002a,
+        0 0 30px rgba(255, 204, 51, 0.5);
+      transform: skewX(-6deg);
+      display: inline-block;
+    }
+    .page-logo-sub {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(10px, 1.5vmin, 14px);
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-shadow: 1px 1px 0 var(--hot);
+      padding: 4px 14px;
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+    }
+
+    .hiring-footer {
+      margin-top: auto;
+      padding: 48px 16px 32px;
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+    }
+    .hiring-footer-link {
+      font-family: "VT323", monospace;
+      font-size: 16px;
+      font-weight: normal;
+      color: var(--cream);
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+    .hiring-footer-link:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
     .back-to-space {
       display: inline-block;
       margin-bottom: 14px;
@@ -632,6 +708,134 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       padding: 7px 8px;
       text-transform: uppercase;
     }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+    @media (max-width: 560px) { .media-grid { grid-template-columns: 1fr; } }
+    .media-card {
+      background: #1a0033;
+      border: 1px solid var(--hot);
+      overflow: hidden;
+      position: relative;
+    }
+    .media-card img,
+    .media-card video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+    .media-card .caption {
+      padding: 6px 10px;
+      font-size: 13px;
+      color: var(--cream);
+      border-top: 1px dashed rgba(255, 51, 153, 0.4);
+    }
+    .media-card.placeholder {
+      background:
+        repeating-linear-gradient(45deg, #1a0033 0 12px, #2a0040 12px 24px);
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 16px;
+      color: var(--gold);
+      text-align: center;
+      padding: 12px;
+      gap: 4px;
+    }
+    .media-card.placeholder .label {
+      font-size: 12px;
+      color: var(--cream);
+      opacity: 0.7;
+      font-family: "VT323", monospace;
+      letter-spacing: 1px;
+    }
+    .media-card.video iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 0;
+      display: block;
+    }
+    .media-card.tall iframe {
+      width: 100%;
+      aspect-ratio: 9/14;
+      border: 0;
+      display: block;
+    }
+    .media-card.article {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--cream);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .media-card.article:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+    .media-card.article .article-bg {
+      aspect-ratio: 16/9;
+      background:
+        radial-gradient(ellipse 60% 80% at 30% 30%, rgba(255, 204, 51, 0.2), transparent 70%),
+        linear-gradient(135deg, #1a0033 0%, #4a002a 100%);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      border-bottom: 1px dashed rgba(255, 51, 153, 0.4);
+    }
+    .media-card.article .article-bg.has-image {
+      background-image: var(--bg-img);
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: normal;
+      font-size: 0;
+    }
+    .media-card.article .caption {
+      padding: 8px 10px;
+      border-top: none;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .media-card.article .caption .outlet {
+      display: block;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+    }
+    .video-embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-embed.horizontal { aspect-ratio: 16/9; }
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .media-card.tall {
+      grid-row: span 2;
+    }
+    .media-card.tall .video-embed {
+      aspect-ratio: 9/16;
+    }
+
     .stat-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -766,6 +970,24 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       padding: 16px;
       margin-top: 8px;
     }
+    .taste-wrap.intro-mode {
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .taste-wrap.intro-mode:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--gold);
+    }
+    .taste-wrap.intro-mode:hover #start-taste {
+      background: var(--hot);
+      color: #fff;
+    }
+    .taste-wrap.intro-mode {
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .taste-intro { font-size: 18px; }
     .taste-stage { display: none; margin-top: 12px; }
     .taste-stage.active { display: block; }
@@ -803,6 +1025,84 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       text-decoration: none;
     }
     .clip-link:hover { background: var(--hot); color: #fff; }
+    .clip-link.small {
+      font-size: 10px;
+      padding: 3px 8px;
+      opacity: 0.85;
+    }
+
+    .embed-container {
+      margin: 10px auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      width: 100%;
+      max-width: 540px;
+    }
+    .embed-container iframe {
+      width: 100%;
+      max-width: 540px;
+      border: 0;
+      background: #fff;
+    }
+    .embed-container iframe.embed-ig { height: 820px; }
+    .embed-container blockquote.twitter-tweet {
+      width: 100% !important;
+      max-width: 540px !important;
+      margin: 0 auto !important;
+    }
+    .embed-fallback {
+      padding: 28px 18px;
+      text-align: center;
+      background: #0a0014;
+      border: 1px dashed var(--gold);
+      width: 100%;
+    }
+    .embed-fallback .label {
+      display: block;
+      font-family: "VT323", monospace;
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+    .embed-fallback a {
+      display: inline-block;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 14px;
+      color: #1a0033;
+      background: var(--gold);
+      padding: 10px 20px;
+      border: 2px solid #1a0033;
+      text-decoration: none;
+    }
+    .embed-fallback a:hover { background: var(--hot); color: #fff; }
+
+    .apply-locked {
+      background: #1a0033;
+      border: 2px dashed var(--gold);
+      padding: 28px 24px;
+      text-align: center;
+      margin: 22px 0;
+    }
+    .apply-locked .lock-icon {
+      font-size: 44px;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    .apply-locked .lock-msg {
+      font-family: "Bungee", "Impact", sans-serif;
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .apply-locked .lock-sub {
+      font-size: 17px;
+      color: var(--cream);
+      opacity: 0.9;
+    }
 
     .taste-buttons { display: flex; gap: 12px; justify-content: center; }
     .taste-buttons.hidden { display: none; }
@@ -872,6 +1172,226 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       color: var(--hot);
       font-size: 22px;
       margin: 0 0 6px;
+    }
+
+    .cover {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(255, 51, 153, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(255, 204, 51, 0.14) 0%, transparent 60%),
+        #0a0014;
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 0 2px #000, 0 0 0 6px var(--hot), 0 0 40px rgba(255, 51, 153, 0.4);
+      padding: 18px 18px 22px;
+      text-align: center;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .cover-eyebrow {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--gold);
+    }
+    .cover-top { justify-content: center; border-bottom: 1px solid var(--gold); }
+    .cover-score-hero {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(80px, 18vmin, 160px);
+      letter-spacing: 0;
+      color: var(--hot);
+      text-shadow:
+        5px 5px 0 var(--gold),
+        10px 10px 0 #4a002a;
+      line-height: 1;
+      margin: 14px 0 4px;
+      -webkit-text-stroke: 2px #000;
+      paint-order: stroke fill;
+    }
+    .cover-score-hero .score-slash {
+      color: var(--gold);
+      margin: 0 4px;
+      -webkit-text-stroke: 2px #000;
+    }
+    .cover-score-hero .score-total {
+      color: var(--cream);
+    }
+    .cover-emoji {
+      font-size: clamp(40px, 8vmin, 64px);
+      line-height: 1;
+      margin: 8px 0 4px;
+      filter: drop-shadow(0 4px 0 rgba(255, 51, 153, 0.4));
+    }
+    .cover-emoji .persona-image {
+      width: clamp(120px, 22vmin, 200px);
+      height: clamp(120px, 22vmin, 200px);
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      box-shadow: 5px 5px 0 var(--hot);
+      display: inline-block;
+    }
+    .cover-tagline {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--cream);
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+    .cover-name {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(22px, 5vmin, 38px);
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-shadow:
+        2px 2px 0 var(--hot),
+        4px 4px 0 #4a002a;
+      line-height: 1;
+      margin: 4px 0 10px;
+      -webkit-text-stroke: 1px #000;
+      paint-order: stroke fill;
+    }
+    .cover-line {
+      font-family: "VT323", monospace;
+      font-size: clamp(15px, 2.2vmin, 20px);
+      color: var(--cream);
+      line-height: 1.35;
+      margin: 0 auto 14px;
+      max-width: 380px;
+    }
+    .cover-stars {
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 6px;
+      margin: 8px 0 14px;
+      text-shadow: 1px 1px 0 var(--hot);
+    }
+    #result-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #apply-section.embedded {
+      margin: 18px -18px 14px;
+      padding: 22px 24px 24px;
+      background: linear-gradient(180deg, #1a0033 0%, #4a002a 100%);
+      border-top: 3px dashed var(--gold);
+      border-bottom: 3px dashed var(--gold);
+      text-align: left;
+      box-shadow: inset 0 0 50px rgba(255, 51, 153, 0.15);
+    }
+    #apply-section.embedded h2 {
+      font-family: "Bungee", "Impact", sans-serif;
+      color: var(--gold);
+      font-size: clamp(20px, 4vmin, 32px);
+      text-align: center;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin: 0 0 8px;
+      text-shadow:
+        2px 2px 0 var(--hot),
+        4px 4px 0 #4a002a;
+      -webkit-text-stroke: 1px #000;
+      paint-order: stroke fill;
+    }
+    #apply-section.embedded > p {
+      text-align: center;
+      color: var(--cream);
+      font-size: 16px;
+      margin: 0 0 14px;
+    }
+    #apply-section.embedded .form-row label {
+      color: var(--gold);
+      font-size: 13px;
+    }
+    #apply-section.embedded .form-row input,
+    #apply-section.embedded .form-row textarea {
+      background: rgba(10, 0, 20, 0.7);
+      border: 1px solid var(--hot);
+      color: var(--cream);
+    }
+    #apply-section.embedded .form-row input::placeholder,
+    #apply-section.embedded .form-row textarea::placeholder {
+      color: rgba(246, 233, 193, 0.4);
+    }
+    #apply-section.embedded .submit-btn {
+      background: var(--gold);
+      box-shadow: 5px 5px 0 var(--hot);
+      font-size: 18px;
+      padding: 14px 32px;
+    }
+    #apply-section.embedded .submit-btn:hover {
+      background: var(--hot);
+      color: #fff;
+      box-shadow: 5px 5px 0 var(--gold);
+    }
+    .apply-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: #1a0033;
+      border: 3px solid #1a0033;
+      padding: 14px 28px;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(15px, 2.2vmin, 18px);
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      box-shadow: 5px 5px 0 var(--hot);
+      animation: cta-pulse 2.4s ease-in-out infinite;
+    }
+    .apply-cta:hover {
+      background: var(--hot);
+      color: #fff;
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--gold);
+    }
+    .apply-cta.secondary {
+      background: var(--hot);
+      color: #fff;
+      animation: none;
+      box-shadow: 5px 5px 0 var(--gold);
+    }
+    .apply-cta.secondary:hover {
+      background: var(--gold);
+      color: #1a0033;
+    }
+    @keyframes cta-pulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+    .coffee-note {
+      font-size: 15px;
+      color: var(--cream);
+      opacity: 0.9;
+      margin: 2px 0;
+    }
+    .coffee-note a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    .coffee-note a:hover { color: var(--hot); }
+    .next-btn.share-secondary {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid var(--cream);
+      font-size: 12px;
+      padding: 4px 12px;
+      opacity: 0.75;
+    }
+    .next-btn.share-secondary:hover {
+      background: var(--cream);
+      color: #1a0033;
+      opacity: 1;
     }
     .taste-result .score {
       font-family: "Bungee", "Impact", sans-serif;
@@ -1058,7 +1578,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- CONTACT US -->
 <div class="subpage" id="page-contact">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">📡 OPEN TRANSMISSION</div>
     <h1>CONTACT US</h1>
     <div class="meta-strip">
@@ -1109,9 +1629,11 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
     <h2>★ or find us in the wild</h2>
     <ul>
-      <li>kendall (head of creative experimentation): kendall.tucker@ramp.com</li>
-      <li>amber (creative producer): amber.layne@ramp.com</li>
-      <li>on the internet: wherever ramp's stunts get reposted</li>
+      <li>ramp on instagram: <a href="https://instagram.com/tryramp" target="_blank" rel="noopener">@tryramp</a></li>
+      <li>ramp on tiktok: <a href="https://www.tiktok.com/@ramp.com" target="_blank" rel="noopener">@ramp.com</a></li>
+      <li>ramp on x: <a href="https://x.com/tryramp" target="_blank" rel="noopener">@tryramp</a></li>
+      <li>kendall on x: <a href="https://x.com/kendallhtucker" target="_blank" rel="noopener">@kendallhtucker</a></li>
+      <li>amber on instagram: <a href="https://www.instagram.com/amberjoylayne" target="_blank" rel="noopener">@amberjoylayne</a></li>
     </ul>
   </div>
 </div>
@@ -1119,7 +1641,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- BRIAN BOX -->
 <div class="subpage" id="page-brian-box">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-image" data-caption="Brian Box Stunt: one accountant, too many receipts">
       <img src="assets/brian-box.jpg" alt="Brian Baumgartner inside the Ramp box stunt">
     </div>
@@ -1137,6 +1659,35 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <div class="stat-cell"><div class="num">1</div><div class="lbl">box</div></div>
       <div class="stat-cell"><div class="num">∞</div><div class="lbl">earned coverage</div></div>
       <div class="stat-cell"><div class="num">📈</div><div class="lbl">huge demand lift</div></div>
+    </div>
+
+    <h2>pictures &amp; clips</h2>
+    <div class="media-grid">
+      <div class="media-card tall">
+        <iframe src="https://www.instagram.com/reel/DPRhBGhjbXw/embed/" allowfullscreen scrolling="no"></iframe>
+        <div class="caption">@tryramp on instagram</div>
+      </div>
+      <a class="media-card article" href="https://www.marketingbrew.com/stories/2025/10/22/ramp-viral-livestream-brian-baumgartner" target="_blank" rel="noopener">
+        <div class="article-bg">📰</div>
+        <div class="caption">
+          <span class="outlet">Marketing Brew</span>
+          "Inside the making of Ramp's viral livestream with Brian Baumgartner"
+        </div>
+      </a>
+      <a class="media-card article" href="https://brandbaby.substack.com/p/issue-89-ramp-trapped-brian-baumgartner" target="_blank" rel="noopener">
+        <div class="article-bg">🗞️</div>
+        <div class="caption">
+          <span class="outlet">Brand Baby</span>
+          "Ramp trapped Brian Baumgartner in a glass box & it went viral"
+        </div>
+      </a>
+      <a class="media-card article" href="https://ramp.com/blog/ramp-names-october-15-national-expense-report-day" target="_blank" rel="noopener">
+        <div class="article-bg has-image" style="--bg-img: url('https://cdn.sanity.io/images/6jz6vxxd/production/d4f1402bfe00ab75bb96670a4c42fa450aa0677e-2400x1200.png?fit=max&auto=format');"></div>
+        <div class="caption">
+          <span class="outlet">Ramp Blog</span>
+          "Ramp names October 15 National Expense Report Day"
+        </div>
+      </a>
     </div>
 
     <h2>why it worked</h2>
@@ -1158,7 +1709,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- FUNERAL FOR THE PENNY -->
 <div class="subpage" id="page-funeral-penny">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">⚰️ RIP 1¢</div>
     <h1>FUNERAL FOR THE PENNY</h1>
     <div class="meta-strip">
@@ -1172,8 +1723,40 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     <h2>the highlights</h2>
     <div class="stat-row">
       <div class="stat-cell"><div class="num">700+</div><div class="lbl">RSVPs</div></div>
-      <div class="stat-cell"><div class="num">📉</div><div class="lbl">no demand lift</div></div>
+      <div class="stat-cell"><div class="num">🤡</div><div class="lbl">for the bit</div></div>
       <div class="stat-cell"><div class="num">1:01</div><div class="lbl">start time</div></div>
+    </div>
+
+    <h2>press &amp; coverage</h2>
+    <div class="media-grid">
+      <a class="media-card article" href="https://www.washingtonpost.com/dc-md-va/2025/12/20/penny-funeral-dc/" target="_blank" rel="noopener">
+        <div class="article-bg">📰</div>
+        <div class="caption">
+          <span class="outlet">Washington Post</span>
+          "A funeral for the penny brings Abe Lincoln impersonators and Victorian garb"
+        </div>
+      </a>
+      <a class="media-card article" href="https://www.foxnews.com/us/mock-funeral-held-penny-lincoln-memorial-230-year-coin-production-ends" target="_blank" rel="noopener">
+        <div class="article-bg has-image" style="--bg-img: url('https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2025/12/1200/675/penny-funeral-dc-lincoln-memorial-1.jpg?ve=1&tl=1');"></div>
+        <div class="caption">
+          <span class="outlet">Fox News</span>
+          "Mock funeral held for the penny at Lincoln Memorial"
+        </div>
+      </a>
+      <a class="media-card article" href="https://www.detroitnews.com/story/business/2025/12/21/funeral-for-the-penny/87868596007/" target="_blank" rel="noopener">
+        <div class="article-bg">🗞️</div>
+        <div class="caption">
+          <span class="outlet">Detroit News</span>
+          "A funeral for the penny draws Lincoln impersonators and Victorian garb"
+        </div>
+      </a>
+      <a class="media-card article" href="https://partiful.com/e/2j0nVDfab33uLAPEwXVz" target="_blank" rel="noopener">
+        <div class="article-bg">⚰️</div>
+        <div class="caption">
+          <span class="outlet">The Invite</span>
+          "Funeral for the penny — Partiful event page"
+        </div>
+      </a>
     </div>
 
     <h2>what we learned</h2>
@@ -1188,7 +1771,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- MULTIPLYING BRIAN -->
 <div class="subpage" id="page-multiplying-brian">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">🪞 BRIAN x BRIAN x BRIAN</div>
     <h1>MULTIPLYING BRIAN</h1>
     <div class="meta-strip">
@@ -1206,6 +1789,44 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <div class="stat-cell"><div class="num">📈</div><div class="lbl">huge demand lift</div></div>
     </div>
 
+    <h2>the ad</h2>
+    <div class="media-card video" style="margin: 14px 0 20px;">
+      <iframe src="https://www.youtube.com/embed/1-mgrFS00B0" title="Ramp Super Bowl LX — Multiply What's Possible" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="caption">"Multiply What's Possible" — Ramp Super Bowl LX commercial</div>
+    </div>
+
+    <h2>press &amp; coverage</h2>
+    <div class="media-grid">
+      <a class="media-card article" href="https://www.adweek.com/creativity/brian-baumgartner-is-the-true-star-of-the-office-in-ramps-super-bowl-ad/" target="_blank" rel="noopener">
+        <div class="article-bg has-image" style="--bg-img: url('https://static-www.adweek.com/wp-content/uploads/2026/02/RampSuperBowl2026.png?w=1200');"></div>
+        <div class="caption">
+          <span class="outlet">Adweek</span>
+          "Brian Baumgartner is the true star of The Office in Ramp's Super Bowl Ad"
+        </div>
+      </a>
+      <a class="media-card article" href="https://lbbonline.com/news/Ramp-Super-Bowl-LX-Brian-Baumgartner" target="_blank" rel="noopener">
+        <div class="article-bg">🎬</div>
+        <div class="caption">
+          <span class="outlet">LBBOnline</span>
+          "Brian Baumgartner Returns as 'World's Most Famous Accountant'"
+        </div>
+      </a>
+      <a class="media-card article" href="https://musebyclios.com/super-bowl/ramp-brian-baumgartner-are-all-about-multiplication/" target="_blank" rel="noopener">
+        <div class="article-bg has-image" style="--bg-img: url('https://cdn.musebyclios.com/wp-content/uploads/2026/01/28133453/ramp-1.jpg');"></div>
+        <div class="caption">
+          <span class="outlet">Muse by Clios</span>
+          "Ramp, Brian Baumgartner Are All About Multiplication"
+        </div>
+      </a>
+      <a class="media-card article" href="https://www.ispot.tv/ad/gOWD/ramp-super-bowl-2026-multiply-featuring-brian-baumgartner" target="_blank" rel="noopener">
+        <div class="article-bg has-image" style="--bg-img: url('https://images-cdn.ispot.tv/ad/gOWD/default.jpg');"></div>
+        <div class="caption">
+          <span class="outlet">iSpot</span>
+          "Ramp Super Bowl 2026 TV Spot, 'Multiply' featuring Brian Baumgartner"
+        </div>
+      </a>
+    </div>
+
     <h2>the takeaway</h2>
     <p>the stunt mechanic is portable. the trick is taste: knowing which premise scales, which talent earns the camera, and which detail quietly kills the moment if missed.</p>
   </div>
@@ -1214,7 +1835,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- PROJECTS IN DEVELOPMENT -->
 <div class="subpage" id="page-projects-development">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">🔭 CLASSIFIED</div>
     <h1>PROJECTS IN DEVELOPMENT</h1>
     <div class="meta-strip">
@@ -1238,7 +1859,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- THE TEAM -->
 <div class="subpage" id="page-team">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
+    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">🪐 THE CREW</div>
     <h1>THE TEAM</h1>
     <div class="meta-strip">
@@ -1291,20 +1912,24 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- WE'RE HIRING (the big one) -->
 <div class="subpage" id="page-hiring">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO SPACE</a>
 
-    <div class="role-banner">★ NOW HIRING ★ <span class="blink">VIRAL CREATIVE PRODUCER</span> ★ $5K REFERRAL BOUNTY ★</div>
+    <div class="page-logo" data-back title="back to home">
+      <div class="page-logo-ramp">RAMP</div>
+      <div class="page-logo-sub">CREATIVE EXPERIMENTATION TEAM</div>
+    </div>
+
+    <div class="role-banner">★ NOW HIRING ★ <span class="blink">VIRAL CREATIVE PRODUCER</span> ★<br>$5K REFERRAL BOUNTY ★</div>
 
     <h1>VIRAL CREATIVE PRODUCER</h1>
     <div class="meta-strip">
-      <span>📍 NYC / Remote</span>
+      <span>📍 Miami / NYC / San Francisco / Remote</span>
       <span>💼 Full-time</span>
-      <span>👤 Reports to: Kendall Tucker</span>
+      <span>💰 $150K + equity + benefits <em class="placeholder-flag">(placeholder)</em></span>
     </div>
 
-    <p><strong>tl;dr:</strong> stunts are ramp's highest-leverage growth surface. the brian box landed with real downstream impact at near-zero cost. the super bowl run did even more. five more stunts are in motion. we need another amber. that's you, maybe.</p>
+    <p><strong>tl;dr:</strong> stunts are ramp's highest-leverage growth surface. the brian box landed with real downstream impact at near-zero cost. the super bowl run did even more. five more stunts are in motion. we need another producer. that's you, maybe.</p>
 
-    <p><strong>the bar is unusual:</strong> we are not hiring a creative producer who has shipped customer marketing videos at an agency. we are hiring someone who has <em>personally caused a viral moment.</em> built their own audience from real creative work, or produced an event/stunt that punctured culture. receipts required.</p>
+    <p><strong>the bar is unusual:</strong> we are not hiring a creative producer who has shipped customer marketing videos. we are hiring someone who has <em>personally caused a viral moment.</em> built their own audience from real creative work, or produced an event/stunt that punctured culture. receipts required.</p>
 
     <div class="job-cols">
       <div class="job-col">
@@ -1313,7 +1938,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
           <li>stunts end to end: concept to execution to clips</li>
           <li>casting talent, creators, IRL characters</li>
           <li>permits, releases, COIs, vendors</li>
-          <li>posting, collab tags, amplification</li>
+          <li>posting, collabs, amplification</li>
           <li>measurement: views, shares, pipeline impact</li>
         </ul>
       </div>
@@ -1329,84 +1954,85 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       </div>
     </div>
 
-    <div class="perks-strip">
-      <strong>real swings</strong> · stunts that get noticed · a head of creative experimentation who will fight you (lovingly)
-    </div>
-
     <h2>★ the taste test</h2>
-    <p>but first: taste. AI can't grade this. <strong>score 9 or 10 to unlock the application.</strong></p>
+    <p>Before we let you apply, we want to make sure our tastes align. <strong>score 9 or 10 to unlock the application.</strong> game it and you'll waste our time and yours.</p>
 
-    <div class="taste-wrap">
+    <div class="taste-wrap intro-mode" id="taste-wrap">
       <div class="taste-intro" id="taste-intro">
-        <p>10 cards. each is a real thing on the internet. open it in a new tab. vote HOT or NOT. we graded these in advance with the team. score 9+ and we unlock the apply form. anything less, you'll get a screenshot-worthy verdict.</p>
-        <p style="text-align:center;margin-top:14px;">
+        <p style="text-align:center;margin-top:6px;">
           <button class="submit-btn" id="start-taste">★ START THE TASTE TEST ★</button>
         </p>
       </div>
 
       <div class="taste-stage" id="taste-stage">
         <div class="taste-card">
-          <div class="teaser" id="teaser"></div>
-          <div class="source" id="source"></div>
-          <a id="clipLink" class="clip-link" href="#" target="_blank" rel="noopener">▶ open in new tab</a>
+          <div class="embed-container" id="embedContainer"></div>
           <div class="taste-buttons" id="voteButtons">
-            <button class="vote-btn" data-vote="hot">🔥 HOT</button>
-            <button class="vote-btn cold" data-vote="not">❄️ NOT</button>
+            <button class="vote-btn cold" data-vote="not">NOT COOL</button>
+            <button class="vote-btn" data-vote="hot">COOL</button>
           </div>
           <div class="taste-reveal" id="reveal">
             <div class="reveal-mark" id="revealMark"></div>
             <div class="reveal-line" id="revealLine"></div>
             <button class="next-btn" id="nextBtn">→ NEXT</button>
           </div>
-          <div class="taste-progress" id="progress"></div>
         </div>
       </div>
 
       <div class="taste-stage" id="taste-result-stage">
-        <div class="taste-result">
-          <h3>your taste is...</h3>
-          <div class="score"><span id="score">0</span>/10</div>
-          <div class="verdict" id="verdict"></div>
-          <div class="actions">
-            <button class="next-btn" id="share-score">★ SHARE MY SCORE ★</button>
-            <button class="next-btn" id="restart">↻ RETAKE</button>
+        <div class="cover">
+          <div class="cover-top">
+            <span class="cover-eyebrow">★ INTERNET TASTE TEST ★</span>
           </div>
-          <div id="unlock-zone" style="margin-top:14px;"></div>
+          <div class="cover-score-hero"><span id="score">0</span><span class="score-slash">/</span><span class="score-total">10</span></div>
+          <div class="cover-emoji" id="personaEmoji">🎤</div>
+          <div class="cover-tagline">YOU'RE LIKE</div>
+          <div class="cover-name" id="personaName">YOU</div>
+          <div class="cover-line" id="verdict">your one-liner here</div>
+          <div class="cover-stars">★ ★ ★ ★ ★</div>
+          <div id="result-actions"></div>
         </div>
       </div>
     </div>
 
-    <!-- APPLY -->
-    <h2 id="apply-anchor">★ apply (no resumes)</h2>
-    <p>three fields. that's it. the rest we'll figure out on a call.</p>
-    <form id="apply-form" onsubmit="return submitApply(event)">
-      <div class="form-row">
-        <label>your handle</label>
-        <input type="text" name="handle" placeholder="@yourhandle" required>
+    <p style="text-align:center;margin:14px 0 4px;">
+      <button class="next-btn share-secondary" id="skip-to-refer">i'm not brave enough — just let me refer a friend for $5K</button>
+    </p>
+
+    <!-- APPLY (gated behind the taste test) -->
+    <div id="apply-section" hidden>
+      <h2 id="apply-anchor">★ apply (no resumes)</h2>
+      <p>three fields. that's it. the rest we'll figure out on a call.</p>
+      <form id="apply-form" onsubmit="return submitApply(event)">
+        <div class="form-row">
+          <label>your handle</label>
+          <input type="text" name="handle" placeholder="@yourhandle" required>
+        </div>
+        <div class="form-row">
+          <label>link to the thing you're proudest of</label>
+          <input type="url" name="link" placeholder="https://..." required>
+        </div>
+        <div class="form-row">
+          <label>one sentence on how it happened</label>
+          <textarea name="story" required></textarea>
+        </div>
+        <div class="form-row">
+          <label>numbers (views / reposts / press / pipeline)</label>
+          <input type="text" name="numbers" placeholder="2M views, 14k reposts, picked up by [outlet]" required>
+        </div>
+        <div style="text-align:center;margin-top:14px;">
+          <button class="submit-btn" type="submit">★ SEND IT ★</button>
+        </div>
+      </form>
+      <div class="form-success" id="apply-success">
+        ✦ TRANSMISSION RECEIVED ✦<br>kendall will get back to you.
       </div>
-      <div class="form-row">
-        <label>link to the thing you're proudest of</label>
-        <input type="url" name="link" placeholder="https://..." required>
-      </div>
-      <div class="form-row">
-        <label>one sentence on how it happened</label>
-        <textarea name="story" required></textarea>
-      </div>
-      <div class="form-row">
-        <label>numbers (views / reposts / press / pipeline)</label>
-        <input type="text" name="numbers" placeholder="2M views, 14k reposts, picked up by [outlet]" required>
-      </div>
-      <div style="text-align:center;margin-top:14px;">
-        <button class="submit-btn" type="submit">★ SEND IT ★</button>
-      </div>
-    </form>
-    <div class="form-success" id="apply-success">
-      ✦ TRANSMISSION RECEIVED ✦<br>kendall will get back to you.
     </div>
 
     <!-- REFER -->
-    <h2>★ refer someone ($5,000)</h2>
-    <p>know the right person? drop their handle. if we hire them, you get $5,000 in a ramp diamond-card-style package with a handwritten note. the delivery is the next stunt.</p>
+    <div id="refer-section" hidden>
+    <h2 id="refer-anchor">★ can't pass the test yourself? refer someone who can and we'll pay you $5K</h2>
+    <p>if they get hired of course.</p>
     <form id="refer-form" onsubmit="return submitRefer(event)">
       <div class="form-row">
         <label>their handle</label>
@@ -1421,12 +2047,16 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
         <input type="text" name="yourHandle" required>
       </div>
       <div style="text-align:center;margin-top:14px;">
-        <button class="submit-btn" type="submit">★ POST THE BOUNTY ★</button>
+        <button class="submit-btn" type="submit">★ REFER ★</button>
       </div>
     </form>
     <div class="form-success" id="refer-success">
       ✦ BOUNTY POSTED ✦<br>if we hire them, you get $5K and a story to tell.
     </div>
+    </div>
+  </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
   </div>
 </div>
 
@@ -1515,116 +2145,165 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   // ========== TASTE TEST ==========
   const stunts = [
     {
-      teaser: "an instagram reel by some guy promoting his app",
-      source: "instagram",
       url: "https://www.instagram.com/p/DYQO7Z9RT7n/",
       truth: "hot",
-      wrong: "i don't know this person and i'm not promoting his app but you're wrong and this is really cool."
+      right: "Correct. We don't know this person and we're not promoting his app but his videos are really cool.",
+      wrong: "We don't know this person and we're not promoting his app but you're wrong and this is really cool."
     },
     {
-      teaser: "ben rice promoting ben's rice",
-      source: "@TalkinYanks · X",
       url: "https://x.com/TalkinYanks/status/2036097909180023178",
       truth: "hot",
-      wrong: "you don't think ben rice promoting ben's rice is cool? go get a job at linkedin."
+      right: "Correct. Get that bag Ben.",
+      wrong: "You don't think Ben Rice promoting Ben's Rice is cool? Go get a job at LinkedIn."
     },
     {
-      teaser: "taco bell × baja blast under-eye patches",
-      source: "USA Today",
-      url: "https://www.usatoday.com/story/money/food/2026/03/11/taco-bell-baja-blast-under-eye-patches/89101312007/",
+      url: "https://www.instagram.com/p/DV_T5FckZdF/",
       truth: "hot",
-      wrong: "it may not be for you, but it's culture."
+      right: "Correct. We have never felt more alive.",
+      wrong: "It may not be for you, but it's genius."
     },
     {
-      teaser: "an instagram reel that made me laugh out loud",
-      source: "instagram",
       url: "https://www.instagram.com/p/DYFs-0xJF3D/",
       truth: "hot",
-      wrong: "this is hilarious. laugh you corporate drone."
+      right: "Correct. We would marry the Brita Shark if we could.",
+      wrong: "This is hilarious. Laugh you corporate drone."
     },
     {
-      teaser: "did you miss the teeth?",
-      source: "@TheCatsX · X",
       url: "https://x.com/TheCatsX/status/2054902047330148738",
       truth: "hot",
-      wrong: "sorry, did you miss the teeth?"
+      right: "Correct. This mug would kill in a team meeting.",
+      wrong: "Sorry, did you miss the teeth?"
     },
     {
-      teaser: "drinking is back",
-      source: "@Al_Brown313 · X",
       url: "https://x.com/Al_Brown313/status/2054551603517006151",
       truth: "hot",
-      wrong: "drinking is back in, pay attention."
+      right: "Correct. Drinking is back in.",
+      wrong: "Drinking is back in, pay attention."
     },
     {
-      teaser: "fake history. real dogs.",
-      source: "@fakehistoryhunt · X",
       url: "https://x.com/fakehistoryhunt/status/2054330542795952609",
       truth: "hot",
-      wrong: "dogs are always cool. learn from this."
+      right: "Correct. Dogs are always cool.",
+      wrong: "Dogs are always cool. Learn from this."
     },
     {
-      teaser: "@thebroker.age",
-      source: "tiktok",
-      url: "https://www.tiktok.com/@thebroker.age",
+      url: "https://www.instagram.com/reel/DYSjHYGyPFQ/",
       truth: "not",
-      wrong: "what did you think was cool about this? i must've missed it when i fell asleep."
+      right: "Correct. We swiped immediately.",
+      wrong: "What did you think was cool about this? We must've missed it when we fell asleep."
     },
     {
-      teaser: "a general catalyst tweet",
-      source: "@generalcatalyst · X",
       url: "https://x.com/generalcatalyst/status/2054602972483797274",
       truth: "not",
-      wrong: "i'm not getting into why this is wrong."
+      right: "Correct. This made us uncomfortable.",
+      wrong: "We're not getting into why this is wrong."
     },
     {
-      teaser: "mts.live posts a thing",
-      source: "@MTSlive · X",
       url: "https://x.com/MTSlive/status/2054957415058018443",
       truth: "not",
-      wrong: "i don't like pale imitations of beautiful things."
+      right: "Correct. This is TBPN lite and we don't like pale imitations of beautiful things.",
+      wrong: "We don't like pale imitations of beautiful things."
     }
   ];
 
   let i = 0, score = 0;
+  let order = [];
   const intro       = document.getElementById('taste-intro');
   const stage       = document.getElementById('taste-stage');
   const resultStage = document.getElementById('taste-result-stage');
-  const teaser      = document.getElementById('teaser');
-  const source      = document.getElementById('source');
-  const clipLink    = document.getElementById('clipLink');
-  const progress    = document.getElementById('progress');
   const voteButtons = document.getElementById('voteButtons');
   const reveal      = document.getElementById('reveal');
   const revealMark  = document.getElementById('revealMark');
   const revealLine  = document.getElementById('revealLine');
 
-  document.getElementById('start-taste').addEventListener('click', () => {
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let k = a.length - 1; k > 0; k--) {
+      const j = Math.floor(Math.random() * (k + 1));
+      [a[k], a[j]] = [a[j], a[k]];
+    }
+    return a;
+  }
+
+  function startTaste() {
     intro.style.display = 'none';
     stage.classList.add('active');
+    const w = document.getElementById('taste-wrap');
+    if (w) w.classList.remove('intro-mode');
+    order = shuffle(stunts.map((_, idx) => idx));
+    i = 0;
+    score = 0;
     renderCard();
+  }
+  document.getElementById('start-taste').addEventListener('click', (e) => {
+    e.stopPropagation();
+    startTaste();
+  });
+  document.getElementById('taste-wrap').addEventListener('click', (e) => {
+    const w = document.getElementById('taste-wrap');
+    if (w.classList.contains('intro-mode')) startTaste();
+  });
+
+  document.getElementById('skip-to-refer').addEventListener('click', () => {
+    const referSection = document.getElementById('refer-section');
+    if (referSection) {
+      referSection.hidden = false;
+      setTimeout(() => {
+        referSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
   });
 
   function renderCard() {
-    if (i >= stunts.length) return showResult();
-    const s = stunts[i];
-    teaser.textContent  = s.teaser;
-    source.textContent  = s.source;
-    clipLink.href       = s.url;
-    progress.textContent = `card ${i + 1} of ${stunts.length} · score: ${score}`;
+    if (i >= order.length) return showResult();
+    const s = stunts[order[i]];
     voteButtons.classList.remove('hidden');
     reveal.classList.remove('show');
+
+    const embed = document.getElementById('embedContainer');
+    embed.innerHTML = getEmbedHTML(s);
+    if (s.url.includes('x.com') || s.url.includes('twitter.com')) {
+      loadTwitterWidget(embed);
+    }
+  }
+
+  function loadTwitterWidget(container, attempts) {
+    attempts = attempts || 0;
+    if (window.twttr && window.twttr.widgets) {
+      window.twttr.widgets.load(container);
+    } else if (attempts < 20) {
+      setTimeout(() => loadTwitterWidget(container, attempts + 1), 250);
+    }
+  }
+
+  function getEmbedHTML(stunt) {
+    const url = stunt.url;
+    if (url.includes('instagram.com/p/') || url.includes('instagram.com/reel/')) {
+      const m = url.match(/instagram\.com\/(?:p|reel)\/([^/?]+)/);
+      const id = m ? m[1] : '';
+      return `<iframe class="embed-ig" src="https://www.instagram.com/p/${id}/embed/" allowfullscreen scrolling="no"></iframe>`;
+    }
+    if (url.includes('x.com') || url.includes('twitter.com')) {
+      const twUrl = url.replace('x.com', 'twitter.com');
+      return `<blockquote class="twitter-tweet" data-theme="dark" data-dnt="true"><a href="${twUrl}"></a></blockquote>`;
+    }
+    if (url.includes('tiktok.com')) {
+      return `<div class="embed-fallback"><span class="label">tiktok doesn't embed here. click to watch:</span><a href="${url}" target="_blank" rel="noopener">▶ open on TikTok</a></div>`;
+    }
+    return `<div class="embed-fallback"><span class="label">read it on the source:</span><a href="${url}" target="_blank" rel="noopener">▶ open article</a></div>`;
   }
 
   document.querySelectorAll('[data-vote]').forEach(btn => {
     btn.addEventListener('click', () => {
+      const s = stunts[order[i]];
       const vote = btn.dataset.vote;
-      const correct = vote === stunts[i].truth;
+      const correct = vote === s.truth;
       if (correct) score++;
       voteButtons.classList.add('hidden');
       revealMark.className = 'reveal-mark ' + (correct ? 'correct' : 'wrong');
-      revealMark.textContent = correct ? '✓ correct.' : '✗ wrong.';
-      revealLine.textContent = correct ? '' : stunts[i].wrong;
+      revealMark.textContent = correct ? '✓ Correct.' : '✗ Wrong.';
+      const rightTail = s.right.replace(/^Correct\.\s*/i, '');
+      revealLine.textContent = correct ? rightTail : s.wrong;
       reveal.classList.add('show');
     });
   });
@@ -1634,39 +2313,101 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     renderCard();
   });
 
+  const personas = {
+    10: { image: "assets/persona-10-1.jpg", name: "MEGAN STALTER", line: "you ARE the moment. ramp wants to hire you. we love you." },
+    9:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Elle_Fanning_by_Gage_Skidmore_2.jpg/500px-Elle_Fanning_by_Gage_Skidmore_2.jpg", name: "ELLE FANNING", line: "you're just effortlessly cool. you get the internet." },
+    8:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Hudson_Williams_photo_by_Tara_Taralynn.jpg/500px-Hudson_Williams_photo_by_Tara_Taralynn.jpg", name: "HUDSON & CONNOR", line: "you're so hot but you're getting over-exposed. watch out." },
+    7:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Rebecca_Black_%40_El_Rey_05_20_2023_%2853047678286%29_%28cropped%29.jpg/500px-Rebecca_Black_%40_El_Rey_05_20_2023_%2853047678286%29_%28cropped%29.jpg", name: "REBECCA BLACK", line: "you used to be cringe but now you're really cool. growth is important. keep going." },
+    6:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Timothée_Chalamet-63482_%28cropped%29.jpg/500px-Timothée_Chalamet-63482_%28cropped%29.jpg", name: "TIMOTHEE CHALAMET", line: "you absolutely crushed some of these questions but then you were out here talking about ballet. keep going friend." },
+    5:  { image: "assets/persona-5-1.jpg", name: "CHET HANKS", line: "you're halfway there. not cool, but not not cool. we'd have a beer with you but probably just one." },
+    4:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Chamath_Palihapitiya_in_2025.jpg/500px-Chamath_Palihapitiya_in_2025.jpg", name: "THE ALL IN GUYS", line: "you're really good at tech twitter (or a certain part of the internet) but you've gotta become more well rounded, dude." },
+    3:  { image: "assets/persona-3-1.jpg", name: "JOJO SIWA", line: "you love your maximalism which is great but you need to find more taste, sweetie." },
+    2:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Jimmy_Fallon%2C_Montclair_Film_Festival%2C_2013.jpg/500px-Jimmy_Fallon%2C_Montclair_Film_Festival%2C_2013.jpg", name: "JIMMY FALLON", line: "you're so loveable but bland. live a little. watch some more tiktok." },
+    1:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg/500px-KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg", name: "KATY PERRY", line: "you were great. or at least you used to be. now you're losing the plot. let's refine these tastes please." },
+    0:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg/500px-KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg", name: "KATY PERRY", line: "you were great. or at least you used to be. now you're losing the plot. let's refine these tastes please." }
+  };
+
   function showResult() {
     stage.classList.remove('active');
     resultStage.classList.add('active');
     document.getElementById('score').textContent = score;
-    const verdict = document.getElementById('verdict');
-    const unlock  = document.getElementById('unlock-zone');
-    if (score >= 9) {
-      verdict.innerHTML = "<strong>your taste checks out.</strong> apply below. tell kendall you scored " + score + "/10.";
-      unlock.innerHTML  = "<a href='#apply-anchor' class='clip-link'>★ unlocked: scroll to apply ★</a>";
-    } else if (score >= 7) {
-      verdict.innerHTML = "<strong>close.</strong> not the hire, but you know one. refer them, get $5K.";
-      unlock.innerHTML  = "<a href='#apply-anchor' class='clip-link'>★ scroll to refer someone ★</a>";
+    const p = personas[score] || personas[5];
+    const emojiEl = document.getElementById('personaEmoji');
+    if (p.image) {
+      emojiEl.innerHTML = `<img class="persona-image" src="${p.image}" alt="${p.name}">`;
     } else {
-      verdict.innerHTML = "<strong>your taste isn't there yet.</strong> screenshot this and send it to the friend who scored higher.";
-      unlock.innerHTML  = "<a href='#apply-anchor' class='clip-link'>★ refer the right friend ★</a>";
+      emojiEl.textContent = p.emoji;
     }
+    document.getElementById('personaName').textContent  = p.name;
+    const verdict = document.getElementById('verdict');
+    const actions = document.getElementById('result-actions');
+    const applySection = document.getElementById('apply-section');
+    const referSection = document.getElementById('refer-section');
+    verdict.innerHTML = p.line;
+    const shareBtn = `<button class="next-btn share-secondary" id="share-score">★ share my score ★</button>`;
+    if (score >= 9) {
+      // Move apply form inside the cover so it becomes the focal point
+      const cover = document.querySelector('.cover');
+      const headerEl = document.getElementById('apply-anchor');
+      if (headerEl) headerEl.innerHTML = '✦ YOU PASSED ✦<br>APPLY';
+      applySection.classList.add('embedded');
+      applySection.hidden = false;
+      cover.insertBefore(applySection, document.getElementById('result-actions'));
+      actions.innerHTML =
+        `<div class="coffee-note">not actively looking? <a href="#contact" data-page="contact">grab a coffee with us anyway →</a></div>` +
+        shareBtn;
+      if (referSection) referSection.hidden = true;
+    } else if (score >= 7) {
+      actions.innerHTML =
+        `<a href="#refer-anchor" class="apply-cta secondary">★ REFER SOMEONE & GET $5K ★</a>` +
+        `<div class="coffee-note">want to grab a coffee with us anyway? <a href="#contact" data-page="contact">say hi →</a></div>` +
+        shareBtn;
+      applySection.hidden = true;
+      if (referSection) referSection.hidden = false;
+    } else {
+      actions.innerHTML =
+        `<a href="#refer-anchor" class="apply-cta secondary">★ REFER THE RIGHT FRIEND ★</a>` +
+        shareBtn;
+      applySection.hidden = true;
+      if (referSection) referSection.hidden = false;
+    }
+    wireShareButton();
+    wireScrollToApply();
   }
 
-  document.getElementById('restart').addEventListener('click', () => {
-    i = 0; score = 0;
-    resultStage.classList.remove('active');
-    intro.style.display = 'block';
-  });
+  function wireShareButton() {
+    const btn = document.getElementById('share-score');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const p = personas[score] || personas[5];
+      const url = 'https://kendallhtucker.github.io/creative-experimentation/#hiring';
+      const text = `i scored ${score}/10 on the internet taste test.\n\nthey said i'm like ${p.name.toLowerCase()}. ${p.line}`;
+      if (navigator.share) {
+        navigator.share({ text, url });
+      } else {
+        navigator.clipboard.writeText(`${text}\n\n${url}`);
+        alert('copied to clipboard ✨');
+      }
+    });
+  }
+  function wireScrollToApply() {
+    document.querySelectorAll('[data-scroll-to-apply]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('apply-anchor');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    document.querySelectorAll('#result-actions [data-page]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = a.getAttribute('data-page');
+        history.replaceState(null, '', '#' + id);
+        openPage(id);
+      });
+    });
+  }
 
-  document.getElementById('share-score').addEventListener('click', () => {
-    const text = `i scored ${score}/10 on ramp's taste test ✨ they're hiring a viral creative producer`;
-    if (navigator.share) {
-      navigator.share({ text });
-    } else {
-      navigator.clipboard.writeText(text);
-      alert('copied to clipboard ✨');
-    }
-  });
 
 
   // ========== FORM HANDLERS ==========
