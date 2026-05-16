@@ -2121,6 +2121,23 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   });
 
   // ========== PLANET NAV ==========
+  // Build URL: on http(s) use path-style (/hiring/, /result/N/) so unfurls show
+  // the right OG card; on file:// fall back to hash routing.
+  function siteBase() {
+    let base = window.location.pathname;
+    base = base.replace(/\/(hiring|result\/\d+)\/?$/, '/');
+    if (!base.endsWith('/')) base += '/';
+    return base;
+  }
+  function navUrl(id) {
+    if (window.location.protocol === 'file:') return '#' + id;
+    return siteBase() + id + '/';
+  }
+  function homeUrl() {
+    if (window.location.protocol === 'file:') return '#';
+    return siteBase();
+  }
+
   function openPage(id) {
     document.querySelectorAll('.subpage.open').forEach(el => el.classList.remove('open'));
     const page = document.getElementById('page-' + id);
@@ -2132,14 +2149,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   }
   function closePage() {
     document.querySelectorAll('.subpage.open').forEach(el => el.classList.remove('open'));
-    history.replaceState(null, '', '#');
+    history.replaceState(null, '', homeUrl());
   }
 
   document.querySelectorAll('[data-page]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const id = link.getAttribute('data-page');
-      history.replaceState(null, '', '#' + id);
+      history.replaceState(null, '', navUrl(id));
       openPage(id);
     });
   });
@@ -2151,32 +2168,46 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     });
   });
 
-  // open from URL hash on load (supports deep-linkable result pages: #result/N)
+  // open from URL on load: supports both hash (#result/N) and path-style (/result/N/) routes.
+  // After processing, replaceState swaps the URL bar to the path-style canonical URL.
   window.addEventListener('DOMContentLoaded', () => {
-    const h = window.location.hash.replace('#', '');
-    if (!h) return;
-    const m = h.match(/^result\/(\d+)$/);
-    if (m) {
-      const s = parseInt(m[1], 10);
-      if (s >= 0 && s <= 10) {
-        openPage('hiring');
-        // skip intro + quiz, go straight to result stage
-        setTimeout(() => {
-          const wrap = document.getElementById('taste-wrap');
-          const intro = document.getElementById('taste-intro');
-          if (wrap) wrap.classList.remove('intro-mode');
-          if (intro) intro.style.display = 'none';
-          if (typeof stage !== 'undefined') stage.classList.remove('active');
-          score = s;
-          showResult();
-          // scroll the result card into view
-          const resultEl = document.getElementById('taste-result-stage');
-          if (resultEl) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 50);
-        return;
-      }
+    // Try path first (e.g., /hiring/, /result/8/), then fall back to hash
+    const path = window.location.pathname;
+    const hash = window.location.hash.replace('#', '');
+    const resultPath = path.match(/\/result\/(\d+)\/?$/);
+    const hiringPath = /\/hiring\/?$/.test(path);
+    const resultHash = hash.match(/^result\/(\d+)$/);
+
+    let route = null;
+    if (resultPath) route = { kind: 'result', score: parseInt(resultPath[1], 10) };
+    else if (hiringPath) route = { kind: 'page', id: 'hiring' };
+    else if (resultHash) route = { kind: 'result', score: parseInt(resultHash[1], 10) };
+    else if (hash) route = { kind: 'page', id: hash };
+
+    if (!route) return;
+
+    if (route.kind === 'result' && route.score >= 0 && route.score <= 10) {
+      openPage('hiring');
+      setTimeout(() => {
+        const wrap = document.getElementById('taste-wrap');
+        const intro = document.getElementById('taste-intro');
+        if (wrap) wrap.classList.remove('intro-mode');
+        if (intro) intro.style.display = 'none';
+        if (typeof stage !== 'undefined') stage.classList.remove('active');
+        score = route.score;
+        showResult();
+        const resultEl = document.getElementById('taste-result-stage');
+        if (resultEl) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Canonicalize URL bar to path-style if we arrived via hash
+        history.replaceState(null, '', navUrl('result/' + route.score));
+      }, 50);
+      return;
     }
-    openPage(h);
+    if (route.kind === 'page') {
+      openPage(route.id);
+      // Canonicalize URL bar
+      history.replaceState(null, '', navUrl(route.id));
+    }
   });
 
   // esc closes
@@ -2381,6 +2412,8 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     document.getElementById('score').textContent = score;
     const heroEl = document.querySelector('.cover-score-hero');
     if (heroEl) heroEl.classList.toggle('is-ten', score === 10);
+    // Canonicalize URL to /result/{score}/ so copying from address bar shares the right card
+    try { history.replaceState(null, '', navUrl('result/' + score)); } catch (e) {}
     const p = personas[score] || personas[5];
     const emojiEl = document.getElementById('personaEmoji');
     if (p.image) {
@@ -2453,7 +2486,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       a.addEventListener('click', (e) => {
         e.preventDefault();
         const id = a.getAttribute('data-page');
-        history.replaceState(null, '', '#' + id);
+        history.replaceState(null, '', navUrl(id));
         openPage(id);
       });
     });
