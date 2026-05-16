@@ -1155,13 +1155,10 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       border: 0;
       background: #fff;
     }
-    .embed-container iframe.embed-ig { height: 820px; }
-    @media (max-width: 600px) {
-      .embed-container iframe.embed-ig { height: 720px; }
-    }
-    @media (max-width: 420px) {
-      .embed-container iframe.embed-ig { height: 640px; }
-    }
+    /* Instagram embed height is sized dynamically by JS via the MEASURE
+       postMessage event from instagram.com. min-height prevents layout jank
+       before the message arrives. */
+    .embed-container iframe.embed-ig { min-height: 560px; }
     .embed-container blockquote.twitter-tweet {
       width: 100% !important;
       max-width: 540px !important;
@@ -2388,6 +2385,25 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       // Canonicalize URL bar
       history.replaceState(null, '', navUrl(route.id));
     }
+  });
+
+  // Instagram embeds post their rendered content height to the parent window
+  // via a MEASURE message. Listen for it and size each IG iframe to its real
+  // height so we don't get trailing whitespace on narrow viewports.
+  window.addEventListener('message', (event) => {
+    if (typeof event.origin !== 'string' || !event.origin.includes('instagram.com')) return;
+    let data = event.data;
+    if (typeof data === 'string') {
+      try { data = JSON.parse(data); } catch (e) { return; }
+    }
+    if (!data || data.type !== 'MEASURE' || !data.details || !data.details.height) return;
+    const height = Math.ceil(data.details.height);
+    document.querySelectorAll('iframe[src*="instagram.com"]').forEach((f) => {
+      if (f.contentWindow === event.source) {
+        f.style.aspectRatio = 'auto';
+        f.style.height = height + 'px';
+      }
+    });
   });
 
   // esc closes
