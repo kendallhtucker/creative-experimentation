@@ -2389,37 +2389,6 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     if (e.key === 'Escape') closePage();
   });
 
-  // Dev test panel — activated by ?dev=spacejam on the URL. Lets Kendall jump
-  // to any score (0-10) on the live site without taking the full test.
-  // Invisible to anyone who doesn't know the query param.
-  (function maybeShowDevPanel() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('dev') !== 'spacejam') return;
-    const panel = document.createElement('div');
-    panel.id = 'dev-test-panel';
-    panel.style.cssText = 'position:fixed;bottom:14px;right:14px;z-index:99999;background:#0a0014;border:2px solid var(--gold,#ffcc00);box-shadow:4px 4px 0 #ff3399;padding:10px 12px;font-family:VT323,monospace;color:#fff5d6;display:flex;gap:8px;align-items:center;';
-    panel.innerHTML = '<span style="color:#ffcc00;font-size:14px;letter-spacing:1px;">DEV</span>' +
-      '<input id="dev-score-input" type="number" min="0" max="10" placeholder="0-10" style="width:60px;background:#1a0028;color:#fff5d6;border:1px solid #ffcc00;font-family:VT323,monospace;font-size:18px;padding:4px 6px;">' +
-      '<button id="dev-go" style="background:#ff3399;color:#fff5d6;border:1px solid #ffcc00;font-family:VT323,monospace;font-size:14px;letter-spacing:1px;padding:5px 10px;cursor:pointer;">GO</button>';
-    document.body.appendChild(panel);
-    document.getElementById('dev-go').addEventListener('click', () => {
-      const n = parseInt(document.getElementById('dev-score-input').value, 10);
-      if (Number.isNaN(n) || n < 0 || n > 10) { alert('enter 0-10'); return; }
-      openPage('hiring');
-      setTimeout(() => {
-        const wrap = document.getElementById('taste-wrap');
-        const intro = document.getElementById('taste-intro');
-        if (wrap) wrap.classList.remove('intro-mode');
-        if (intro) intro.style.display = 'none';
-        if (typeof stage !== 'undefined') stage.classList.remove('active');
-        score = n;
-        showResult();
-        const resultEl = document.getElementById('taste-result-stage');
-        if (resultEl) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 50);
-    });
-  })();
-
 
   // ========== TASTE TEST ==========
   const stunts = [
