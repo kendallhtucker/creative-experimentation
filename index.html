@@ -1156,6 +1156,12 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       background: #fff;
     }
     .embed-container iframe.embed-ig { height: 820px; }
+    @media (max-width: 600px) {
+      .embed-container iframe.embed-ig { height: 720px; }
+    }
+    @media (max-width: 420px) {
+      .embed-container iframe.embed-ig { height: 640px; }
+    }
     .embed-container blockquote.twitter-tweet {
       width: 100% !important;
       max-width: 540px !important;
@@ -2638,17 +2644,26 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       const imageUrl = `assets/share-cards/share-card-result-${scoreStr}.png`;
       const filename = `internet-taste-test-${scoreStr}.png`;
       const originalLabel = btn.innerHTML;
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      // iOS Safari's Web Share API writes blank images when the user picks
+      // "Save Image" from the share sheet — known long-standing bug. Open the
+      // PNG in a new tab so users can long-press → Save Image reliably.
+      if (isIOS) {
+        window.open(imageUrl, '_blank');
+        btn.innerHTML = '★ LONG-PRESS TO SAVE ★';
+        setTimeout(() => { btn.innerHTML = originalLabel; }, 3000);
+        return;
+      }
       try {
         const resp = await fetch(imageUrl);
         const blob = await resp.blob();
         const file = new File([blob], filename, { type: 'image/png' });
-        // Web Share API w/ files: iOS Safari and Chrome Android open the system
-        // share sheet (Stories, Twitter, iMessage, etc.) directly.
+        // Android Chrome: native share sheet works correctly with files.
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({ files: [file] });
           return;
         }
-        // Desktop / unsupported browsers: trigger a download.
+        // Desktop: trigger a download.
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = filename;
@@ -2659,7 +2674,6 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
         btn.innerHTML = '★ SAVED — POST IT ★';
         setTimeout(() => { btn.innerHTML = originalLabel; }, 2500);
       } catch (err) {
-        // Last-ditch: open the image in a new tab so user can save manually.
         window.open(imageUrl, '_blank');
       }
     });
