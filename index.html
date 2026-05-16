@@ -907,6 +907,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       display: flex;
       gap: 10px;
       align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.team-card:hover {
+      border-color: var(--hot);
+      box-shadow: 0 0 0 1px var(--hot), 0 0 18px rgba(255,51,153,0.35);
+      transform: translate(-1px, -1px);
     }
     .team-avatar {
       width: 60px; height: 60px;
@@ -919,11 +927,37 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       font-family: "Bungee", "Impact", sans-serif;
       font-size: 22px;
       color: #fff;
+      overflow: hidden;
+    }
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .team-avatar.outline {
+      background: #0a0014;
+      border: 2px dashed rgba(255,204,51,0.55);
+      color: rgba(246,233,193,0.55);
+      font-size: 30px;
     }
     .team-name {
       font-family: "Bungee", "Impact", sans-serif;
       font-size: 14px;
       color: var(--gold);
+    }
+    .team-tag {
+      display: inline-block;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: #1a0033;
+      background: var(--hot);
+      padding: 2px 5px;
+      margin-right: 6px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
     }
     .team-role { font-size: 15px; opacity: 0.85; }
 
@@ -1890,37 +1924,49 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <span>Reports to: growth marketing</span>
     </div>
 
-    <p>we do stunts, videos, and influencer stuff. we are also, according to Notion, the funnest and best looking team at Ramp.</p>
+    <p>we do stunts, videos, and influencer stuff. we are also, according to us, the funnest and best looking team at Ramp.</p>
 
     <div class="team-grid">
-      <div class="team-card">
-        <div class="team-avatar">K</div>
+      <a class="team-card" href="https://ktuck.com/" target="_blank" rel="noopener">
+        <div class="team-avatar"><img src="assets/team/kendall.png" alt="Kendall Tucker"></div>
         <div>
           <div class="team-name">KENDALL TUCKER</div>
-          <div class="team-role">Head of Creative Experimentation. obsessed with stunts. will fight you about casting.</div>
+          <div class="team-role">Director of Creative Experimentation. obsessed with the internet. washed up founder.</div>
         </div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" style="background: radial-gradient(circle at 30% 25%, #f4d39c 0%, #b87333 55%, #4a2812 100%);">A</div>
+      </a>
+      <a class="team-card" href="https://www.instagram.com/amberjoylayne" target="_blank" rel="noopener">
+        <div class="team-avatar"><img src="assets/team/amber.png" alt="Amber Layne"></div>
         <div>
           <div class="team-name">AMBER LAYNE</div>
-          <div class="team-role">Creative Producer. boxed Brian. buried the penny. why we need a second one of her.</div>
+          <div class="team-role">Senior Creative Producer. boxed Brian. buried the penny. professional dancer, actress and funny person.</div>
         </div>
-      </div>
+      </a>
       <div class="team-card">
-        <div class="team-avatar" style="background: radial-gradient(circle at 30% 25%, #c8a8ff 0%, #6a3aae 55%, #1a0033 100%);">?</div>
+        <div class="team-avatar outline">
+          <svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true">
+            <circle cx="30" cy="22" r="9" fill="#000"/>
+            <path d="M10 56 C 12 40, 48 40, 50 56 Z" fill="#000"/>
+          </svg>
+        </div>
         <div>
-          <div class="team-name">[YOU]</div>
-          <div class="team-role">Viral Creative Producer. has personally caused at least one viral moment. about to cause more.</div>
+          <div class="team-name"><span class="team-tag">STARTING SOON</span>INFLUENCER MANAGER</div>
+          <div class="team-role">has worked at the top fintech and d2c brands. cooler and more creative than that sounds.</div>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar" style="background: radial-gradient(circle at 30% 25%, #b5e8ee 0%, #2d7d8a 55%, #0a2a30 100%);">+</div>
+        <div class="team-avatar"><img src="assets/team/contractors.jpg" alt="Contractors and talent"></div>
         <div>
           <div class="team-name">CONTRACTORS / TALENT</div>
           <div class="team-role">a rotating cast of producers, directors, comedians, accountants in costume.</div>
         </div>
       </div>
+      <a class="team-card" href="#hiring" data-page="hiring">
+        <div class="team-avatar outline">?</div>
+        <div>
+          <div class="team-name">[YOU]</div>
+          <div class="team-role">Viral Creative Producer. has personally caused at least one viral moment. about to cause more.</div>
+        </div>
+      </a>
     </div>
 
     <h2>how we work</h2>
