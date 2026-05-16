@@ -1609,7 +1609,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     <div class="planet-label">WE'RE<br>HIRING!</div>
   </a>
 
-  <a href="#hiring" class="planet p-money" data-page="hiring">
+  <a href="#refer" class="planet p-money" data-page="refer">
     <div class="planet-body"></div>
     <div class="planet-label">WE'LL GIVE<br>YOU $5K</div>
   </a>
@@ -1975,6 +1975,84 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
   </div>
 </div>
+
+<!-- REFER A FRIEND -->
+<div class="subpage" id="page-refer">
+  <div class="subpage-inner">
+
+    <div class="page-logo" data-back title="back to home">
+      <div class="page-logo-ramp">RAMP</div>
+      <div class="page-logo-sub">CREATIVE EXPERIMENTATION TEAM</div>
+    </div>
+
+    <div class="role-banner">★ $5K REFERRAL BOUNTY ★ <span class="blink">VIRAL CREATIVE PRODUCER</span> ★</div>
+
+    <h1>REFER A FRIEND. GET $5K.</h1>
+    <div class="meta-strip">
+      <span>💰 $5K on hire</span>
+      <span>📨 one form, one human reads it</span>
+      <span>⏱ takes 60 seconds</span>
+    </div>
+
+    <p>we&rsquo;re hiring a viral creative producer — someone who has <em>personally caused a viral moment.</em> not someone who has produced a tvc. not someone whose reference is a brand activation no one clipped. someone who has made the internet stop scrolling.</p>
+
+    <p>you probably know who they are. tag them in. if we hire them, you get $5K and a story to tell at parties.</p>
+
+    <div class="job-cols">
+      <div class="job-col">
+        <h3>★ who we want</h3>
+        <ul>
+          <li>has built their own following from real work, OR</li>
+          <li>has produced events or stunts that broke through online</li>
+          <li>internet-native taste with receipts</li>
+          <li>obsessed with what&rsquo;s working right now</li>
+          <li>the kind of person <a href="https://www.instagram.com/anthpo/" target="_blank" rel="noopener">anthpo</a> would dm back</li>
+        </ul>
+      </div>
+      <div class="job-col">
+        <h3>★ how this works</h3>
+        <ul>
+          <li>drop their handle below + one sentence</li>
+          <li>we reach out, mention you sent them</li>
+          <li>they go through the same process anyone else would</li>
+          <li>if they sign, you get $5K on their start date</li>
+          <li>no cap on referrals — send as many as you want</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 id="refer-anchor-2">★ drop the name</h2>
+    <p>one sentence on why they&rsquo;ll cause virality is the part that actually matters. make it good.</p>
+    <form id="refer-form-standalone" onsubmit="return submitReferStandalone(event)">
+      <div class="form-row">
+        <label>their handle</label>
+        <input type="text" name="theirHandle" placeholder="@username, link, or full name" required>
+      </div>
+      <div class="form-row">
+        <label>one sentence on why they&rsquo;ll cause virality</label>
+        <textarea name="why" placeholder="the receipts. what have they actually made the internet do?" required></textarea>
+      </div>
+      <div class="form-row">
+        <label>your contact info (so we can pay you)</label>
+        <input type="text" name="yourHandle" placeholder="email, handle, phone — whatever works" required>
+      </div>
+      <div style="text-align:center;margin-top:14px;">
+        <button class="submit-btn" type="submit">★ SEND THE TIP ★</button>
+      </div>
+    </form>
+    <div class="form-success" id="refer-success-standalone">
+      ✦ BOUNTY POSTED ✦<br>if we hire them, you get $5K and a story to tell.
+    </div>
+
+    <h2>★ wait, i think that&rsquo;s me</h2>
+    <p>different planet, friend. <a href="#hiring" data-page="hiring">take the taste test &rarr;</a></p>
+
+  </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp&rsquo;s creative experimentation team →</a>
+  </div>
+</div>
+
 
 <!-- WE'RE HIRING (the big one) -->
 <div class="subpage" id="page-hiring">
@@ -2546,6 +2624,12 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     e.preventDefault();
     document.getElementById('refer-form').style.display = 'none';
     document.getElementById('refer-success').classList.add('show');
+    return false;
+  }
+  function submitReferStandalone(e) {
+    e.preventDefault();
+    document.getElementById('refer-form-standalone').style.display = 'none';
+    document.getElementById('refer-success-standalone').classList.add('show');
     return false;
   }
   function submitContact(e) {
