@@ -1727,11 +1727,11 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
         <label>what's this about?</label>
         <select name="contactReason" required style="width:100%;padding:8px 10px;background:#0a0014;color:var(--cream);border:1px solid var(--gold);font-family:'VT323',monospace;font-size:18px;">
           <option value="">- pick one -</option>
-          <option value="pitch">i have a stunt idea</option>
-          <option value="talent">i'm talent / a creator who wants to work with you</option>
-          <option value="press">press / journalist</option>
-          <option value="vendor">production partner / vendor</option>
-          <option value="brand">brand collab</option>
+          <option value="i have a stunt idea">i have a stunt idea</option>
+          <option value="i'm talent / a creator who wants to work with you">i'm talent / a creator who wants to work with you</option>
+          <option value="press / journalist">press / journalist</option>
+          <option value="production partner / vendor">production partner / vendor</option>
+          <option value="brand collab">brand collab</option>
           <option value="other">other</option>
         </select>
       </div>
@@ -2690,27 +2690,82 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
 
   // ========== FORM HANDLERS ==========
+  // Submissions POST to Google Forms in the background. Each form is linked to
+  // its own Google Sheet (in Kendall's Ramp Drive). The Space Jam form UI stays
+  // on screen — users never see Google. mode:'no-cors' is required because
+  // Google Forms doesn't return CORS headers; the request succeeds either way
+  // and we always show the same success state.
+  const GFORM_APPLY   = 'https://docs.google.com/forms/d/e/1FAIpQLScrQCcY5wv1e2MK9n6RM7qNUnERS7GJWi-tJIbUFEHLJK9CtQ/formResponse';
+  const GFORM_REFER   = 'https://docs.google.com/forms/d/e/1FAIpQLSep2izHfFttx4BtHPDo42dFbXElOYL2Ac3Bfu3yrG8nrp59sg/formResponse';
+  const GFORM_CONTACT = 'https://docs.google.com/forms/d/e/1FAIpQLSeG1qBhrgn9FyDWwV_SSiE3qbyiUY9j2tZdaIUaOCirGiIT7Q/formResponse';
+
+  function postToGoogleForm(actionUrl, fields) {
+    const data = new FormData();
+    for (const [key, value] of Object.entries(fields)) {
+      if (value !== undefined && value !== null && value !== '') {
+        data.append(key, value);
+      }
+    }
+    try {
+      fetch(actionUrl, { method: 'POST', mode: 'no-cors', body: data });
+    } catch (err) {
+      // swallow — user already sees success state, don't let a network blip surface
+    }
+  }
+
   function submitApply(e) {
     e.preventDefault();
-    document.getElementById('apply-form').style.display = 'none';
+    const form = document.getElementById('apply-form');
+    postToGoogleForm(GFORM_APPLY, {
+      'entry.1208533622': form.story.value,
+      'entry.1461644652': form.contact.value,
+      'entry.541655146':  (typeof score !== 'undefined' && score !== null) ? String(score) : '',
+      'entry.1336182545': window.location.href,
+    });
+    form.style.display = 'none';
     document.getElementById('apply-success').classList.add('show');
     return false;
   }
+
   function submitRefer(e) {
     e.preventDefault();
-    document.getElementById('refer-form').style.display = 'none';
+    const form = document.getElementById('refer-form');
+    postToGoogleForm(GFORM_REFER, {
+      'entry.1393278521': form.theirHandle.value,
+      'entry.1895750065': form.why.value,
+      'entry.235931400':  form.yourHandle.value,
+      'entry.1933603711': window.location.href,
+    });
+    form.style.display = 'none';
     document.getElementById('refer-success').classList.add('show');
     return false;
   }
+
   function submitReferStandalone(e) {
     e.preventDefault();
-    document.getElementById('refer-form-standalone').style.display = 'none';
+    const form = document.getElementById('refer-form-standalone');
+    postToGoogleForm(GFORM_REFER, {
+      'entry.1393278521': form.theirHandle.value,
+      'entry.1895750065': form.why.value,
+      'entry.235931400':  form.yourHandle.value,
+      'entry.1933603711': window.location.href,
+    });
+    form.style.display = 'none';
     document.getElementById('refer-success-standalone').classList.add('show');
     return false;
   }
+
   function submitContact(e) {
     e.preventDefault();
-    document.getElementById('contact-form').style.display = 'none';
+    const form = document.getElementById('contact-form');
+    postToGoogleForm(GFORM_CONTACT, {
+      'entry.1289111564': form.contactName.value,
+      'entry.1518284532': form.contactHandle.value,
+      'entry.1273404619': form.contactReason.value,
+      'entry.907458027':  form.contactBody.value,
+      'entry.1657895305': window.location.href,
+    });
+    form.style.display = 'none';
     document.getElementById('contact-success').classList.add('show');
     return false;
   }
