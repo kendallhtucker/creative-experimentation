@@ -694,6 +694,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       display: block;
       filter: saturate(1.08) contrast(1.06);
     }
+    .hero-image.bare::after { display: none; }
     .hero-image::after {
       content: attr(data-caption);
       position: absolute;
@@ -1897,7 +1898,9 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- MULTIPLYING BRIAN -->
 <div class="subpage" id="page-multiplying-brian">
   <div class="subpage-inner">
-    <div class="hero-art">🪞 BRIAN x BRIAN x BRIAN</div>
+    <div class="hero-image bare" style="height: 280px;">
+      <img src="assets/multiplying-brian/jet-life-hero.jpg" alt="Ten Brians walking off a private jet labeled 'ramp Air'">
+    </div>
     <h1>MULTIPLYING BRIAN</h1>
     <div class="meta-strip">
       <span>Year: 2026</span>
