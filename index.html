@@ -1197,9 +1197,17 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     }
     .cover-eyebrow {
       font-family: "Bungee", "Impact", sans-serif;
-      font-size: 12px;
+      font-size: clamp(16px, 2.4vmin, 22px);
       letter-spacing: 2px;
       color: var(--gold);
+    }
+    .cover-score-label {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: clamp(11px, 1.8vmin, 14px);
+      letter-spacing: 3px;
+      color: var(--cream);
+      margin-top: 14px;
+      opacity: 0.85;
     }
     .cover-top { justify-content: center; border-bottom: 1px solid var(--gold); }
     .cover-score-hero {
@@ -1222,6 +1230,10 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     }
     .cover-score-hero .score-total {
       color: var(--cream);
+    }
+    /* 10/10 is 5 glyphs vs. 3 for single-digit scores — shrink so it doesn't bleed past the card. */
+    .cover-score-hero.is-ten {
+      font-size: clamp(60px, 13.5vmin, 120px);
     }
     .cover-emoji {
       font-size: clamp(40px, 8vmin, 64px);
@@ -1568,7 +1580,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
 </div>
 
-<div class="footer-line">© 2026 RAMP, INC. · creative experimentation division · an homage to the greatest athletes of all time, MJ and BB</div>
+<div class="footer-line">© 2026 RAMP, INC. · creative experimentation division · this site is an homage to the greatest athletes of all time, Michael Jordan and Bugs Bunny</div>
 
 
 <!-- ============================================== -->
@@ -1578,7 +1590,6 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 <!-- CONTACT US -->
 <div class="subpage" id="page-contact">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">📡 OPEN TRANSMISSION</div>
     <h1>CONTACT US</h1>
     <div class="meta-strip">
@@ -1590,7 +1601,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     <p>this is where you reach the creative experimentation team. pitch us a stunt, propose a collab, send press, propose talent, or just say hi. one form, one human reads it.</p>
 
     <div style="background: #4a002a; border: 2px dashed var(--gold); padding: 10px 14px; margin: 14px 0; text-align: center;">
-      <strong style="color: var(--gold);">★ applying for the role?</strong> &nbsp;
+      <strong style="color: var(--gold);">★ applying for the viral creative producer role?</strong> &nbsp;
       <a href="#hiring" class="clip-link" data-page="hiring" style="margin: 0;">go to WE'RE HIRING →</a>
     </div>
 
@@ -1636,12 +1647,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <li>amber on instagram: <a href="https://www.instagram.com/amberjoylayne" target="_blank" rel="noopener">@amberjoylayne</a></li>
     </ul>
   </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
+  </div>
 </div>
 
 <!-- BRIAN BOX -->
 <div class="subpage" id="page-brian-box">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-image" data-caption="Brian Box Stunt: one accountant, too many receipts">
       <img src="assets/brian-box.jpg" alt="Brian Baumgartner inside the Ramp box stunt">
     </div>
@@ -1704,12 +1717,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <li>one missed permit, release, printer, or crowd-control detail.</li>
     </ul>
   </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
+  </div>
 </div>
 
 <!-- FUNERAL FOR THE PENNY -->
 <div class="subpage" id="page-funeral-penny">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">⚰️ RIP 1¢</div>
     <h1>FUNERAL FOR THE PENNY</h1>
     <div class="meta-strip">
@@ -1766,12 +1781,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <li>the best lessons sometimes wear a top hat and mourn a coin.</li>
     </ul>
   </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
+  </div>
 </div>
 
 <!-- MULTIPLYING BRIAN -->
 <div class="subpage" id="page-multiplying-brian">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">🪞 BRIAN x BRIAN x BRIAN</div>
     <h1>MULTIPLYING BRIAN</h1>
     <div class="meta-strip">
@@ -1830,12 +1847,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     <h2>the takeaway</h2>
     <p>the stunt mechanic is portable. the trick is taste: knowing which premise scales, which talent earns the camera, and which detail quietly kills the moment if missed.</p>
   </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
+  </div>
 </div>
 
 <!-- PROJECTS IN DEVELOPMENT -->
 <div class="subpage" id="page-projects-development">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">🔭 CLASSIFIED</div>
     <h1>PROJECTS IN DEVELOPMENT</h1>
     <div class="meta-strip">
@@ -1854,12 +1873,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <a href="#hiring" class="back-to-space" data-page="hiring" style="display: inline-block;">★ WE'RE HIRING →</a>
     </p>
   </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
+  </div>
 </div>
 
 <!-- THE TEAM -->
 <div class="subpage" id="page-team">
   <div class="subpage-inner">
-    <a class="back-to-space" data-back>◄ BACK TO HOME</a>
     <div class="hero-art">🪐 THE CREW</div>
     <h1>THE TEAM</h1>
     <div class="meta-strip">
@@ -1907,6 +1928,9 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <li>everything is measured. views, shares, downstream impact. no stunt without a number on it.</li>
     </ul>
   </div>
+  <div class="hiring-footer">
+    <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
+  </div>
 </div>
 
 <!-- WE'RE HIRING (the big one) -->
@@ -1927,19 +1951,21 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <span>💰 $150K + equity + benefits <em class="placeholder-flag">(placeholder)</em></span>
     </div>
 
-    <p><strong>tl;dr:</strong> stunts are ramp's highest-leverage growth surface. the brian box landed with real downstream impact at near-zero cost. the super bowl run did even more. five more stunts are in motion. we need another producer. that's you, maybe.</p>
+    <p>stunts are how ramp punches above its weight. we don&rsquo;t buy attention. we earn it.</p>
 
-    <p><strong>the bar is unusual:</strong> we are not hiring a creative producer who has shipped customer marketing videos. we are hiring someone who has <em>personally caused a viral moment.</em> built their own audience from real creative work, or produced an event/stunt that punctured culture. receipts required.</p>
+    <p><a href="https://www.tiktok.com/@moogoo2000/video/7561522537885076766" target="_blank" rel="noopener">brian box stunt</a>: 214M views, 4x ROAS. <a href="https://www.youtube.com/watch?v=1-mgrFS00B0" target="_blank" rel="noopener">super bowl campaign</a>: 278M views, #4 on <a href="https://www.adweek.com/media/exclusive-ai-chatbots-rank-the-top-super-bowl-ads-and-leave-out-big-tech/" target="_blank" rel="noopener">adweek&rsquo;s AI influence index</a>. <a href="https://www.tiktok.com/@royaventurera/video/7586091084275666231" target="_blank" rel="noopener">funeral for the penny</a>: 35M on a teeny budget covered by <a href="https://www.washingtonpost.com/dc-md-va/2025/12/20/penny-funeral-dc/" target="_blank" rel="noopener">all</a> <a href="https://www.foxnews.com/us/mock-funeral-held-penny-lincoln-memorial-230-year-coin-production-ends" target="_blank" rel="noopener">major</a> <a href="https://www.detroitnews.com/story/business/2025/12/21/funeral-for-the-penny/87868596007/" target="_blank" rel="noopener">publications</a>. backlog is deeper than ever. what we&rsquo;re missing: another producer with internet-native taste and the operational rigor to pull off epic stunts.</p>
+
+    <p><strong>the bar is unusual:</strong> we are not hiring a creative producer who has shipped customer marketing videos. we are hiring someone who has <em>personally caused a viral moment.</em> receipts required.</p>
 
     <div class="job-cols">
       <div class="job-col">
         <h3>★ what you'd own</h3>
         <ul>
-          <li>stunts end to end: concept to execution to clips</li>
-          <li>casting talent, creators, IRL characters</li>
-          <li>permits, releases, COIs, vendors</li>
-          <li>posting, collabs, amplification</li>
-          <li>measurement: views, shares, pipeline impact</li>
+          <li>stunts end to end: from the napkin to the clip that gets reposted</li>
+          <li>casting talent, creators, IRL characters — the difference between a moment and a flop</li>
+          <li>permits, releases, COIs, vendors. every detail that quietly kills a stunt if you blink</li>
+          <li>posting, collabs, amplification. building for the clip, not the edit</li>
+          <li>measurement: views, shares, pipeline impact. no stunt without a number on it</li>
         </ul>
       </div>
       <div class="job-col">
@@ -1984,6 +2010,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
           <div class="cover-top">
             <span class="cover-eyebrow">★ INTERNET TASTE TEST ★</span>
           </div>
+          <div class="cover-score-label">YOU SCORED</div>
           <div class="cover-score-hero"><span id="score">0</span><span class="score-slash">/</span><span class="score-total">10</span></div>
           <div class="cover-emoji" id="personaEmoji">🎤</div>
           <div class="cover-tagline">YOU'RE LIKE</div>
@@ -1995,30 +2022,22 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       </div>
     </div>
 
-    <p style="text-align:center;margin:14px 0 4px;">
+    <p id="skip-to-refer-wrap" style="text-align:center;margin:14px 0 4px;">
       <button class="next-btn share-secondary" id="skip-to-refer">i'm not brave enough — just let me refer a friend for $5K</button>
     </p>
 
     <!-- APPLY (gated behind the taste test) -->
     <div id="apply-section" hidden>
       <h2 id="apply-anchor">★ apply (no resumes)</h2>
-      <p>three fields. that's it. the rest we'll figure out on a call.</p>
+      <p>two questions. that's it. the rest we'll figure out on a call.</p>
       <form id="apply-form" onsubmit="return submitApply(event)">
         <div class="form-row">
-          <label>your handle</label>
-          <input type="text" name="handle" placeholder="@yourhandle" required>
+          <label>what's the biggest viral moment you've made happen?</label>
+          <textarea name="story" placeholder="include links and details about your involvement" required></textarea>
         </div>
         <div class="form-row">
-          <label>link to the thing you're proudest of</label>
-          <input type="url" name="link" placeholder="https://..." required>
-        </div>
-        <div class="form-row">
-          <label>one sentence on how it happened</label>
-          <textarea name="story" required></textarea>
-        </div>
-        <div class="form-row">
-          <label>numbers (views / reposts / press / pipeline)</label>
-          <input type="text" name="numbers" placeholder="2M views, 14k reposts, picked up by [outlet]" required>
+          <label>how do we contact you?</label>
+          <input type="text" name="contact" placeholder="email, handle, phone — whatever works" required>
         </div>
         <div style="text-align:center;margin-top:14px;">
           <button class="submit-btn" type="submit">★ SEND IT ★</button>
@@ -2043,7 +2062,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
         <textarea name="why" required></textarea>
       </div>
       <div class="form-row">
-        <label>your handle (so we can pay you)</label>
+        <label>your contact info (so we can pay you)</label>
         <input type="text" name="yourHandle" required>
       </div>
       <div style="text-align:center;margin-top:14px;">
@@ -2130,10 +2149,32 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     });
   });
 
-  // open from URL hash on load
+  // open from URL hash on load (supports deep-linkable result pages: #result/N)
   window.addEventListener('DOMContentLoaded', () => {
     const h = window.location.hash.replace('#', '');
-    if (h) openPage(h);
+    if (!h) return;
+    const m = h.match(/^result\/(\d+)$/);
+    if (m) {
+      const s = parseInt(m[1], 10);
+      if (s >= 0 && s <= 10) {
+        openPage('hiring');
+        // skip intro + quiz, go straight to result stage
+        setTimeout(() => {
+          const wrap = document.getElementById('taste-wrap');
+          const intro = document.getElementById('taste-intro');
+          if (wrap) wrap.classList.remove('intro-mode');
+          if (intro) intro.style.display = 'none';
+          if (typeof stage !== 'undefined') stage.classList.remove('active');
+          score = s;
+          showResult();
+          // scroll the result card into view
+          const resultEl = document.getElementById('taste-result-stage');
+          if (resultEl) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+        return;
+      }
+    }
+    openPage(h);
   });
 
   // esc closes
@@ -2199,7 +2240,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       wrong: "We're not getting into why this is wrong."
     },
     {
-      url: "https://x.com/MTSlive/status/2054957415058018443",
+      url: "https://x.com/MTSlive/status/2054228417281655106",
       truth: "not",
       right: "Correct. This is TBPN lite and we don't like pale imitations of beautiful things.",
       wrong: "We don't like pale imitations of beautiful things."
@@ -2246,11 +2287,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
   document.getElementById('skip-to-refer').addEventListener('click', () => {
     const referSection = document.getElementById('refer-section');
-    if (referSection) {
+    if (!referSection) return;
+    if (referSection.hidden) {
       referSection.hidden = false;
       setTimeout(() => {
         referSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 50);
+    } else {
+      referSection.hidden = true;
     }
   });
 
@@ -2314,23 +2358,27 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   });
 
   const personas = {
-    10: { image: "assets/persona-10-1.jpg", name: "MEGAN STALTER", line: "you ARE the moment. ramp wants to hire you. we love you." },
+    10: { image: "assets/persona-10-1.jpg", name: "MEG STALTER", line: "you ARE the moment. ramp wants to hire you. we love you." },
     9:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Elle_Fanning_by_Gage_Skidmore_2.jpg/500px-Elle_Fanning_by_Gage_Skidmore_2.jpg", name: "ELLE FANNING", line: "you're just effortlessly cool. you get the internet." },
-    8:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Hudson_Williams_photo_by_Tara_Taralynn.jpg/500px-Hudson_Williams_photo_by_Tara_Taralynn.jpg", name: "HUDSON & CONNOR", line: "you're so hot but you're getting over-exposed. watch out." },
+    8:  { image: "assets/persona-8-2.png", name: "HUDSON & CONNOR", line: "you're so hot but you're getting over-exposed. watch out." },
     7:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Rebecca_Black_%40_El_Rey_05_20_2023_%2853047678286%29_%28cropped%29.jpg/500px-Rebecca_Black_%40_El_Rey_05_20_2023_%2853047678286%29_%28cropped%29.jpg", name: "REBECCA BLACK", line: "you used to be cringe but now you're really cool. growth is important. keep going." },
     6:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Timothée_Chalamet-63482_%28cropped%29.jpg/500px-Timothée_Chalamet-63482_%28cropped%29.jpg", name: "TIMOTHEE CHALAMET", line: "you absolutely crushed some of these questions but then you were out here talking about ballet. keep going friend." },
     5:  { image: "assets/persona-5-1.jpg", name: "CHET HANKS", line: "you're halfway there. not cool, but not not cool. we'd have a beer with you but probably just one." },
-    4:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Chamath_Palihapitiya_in_2025.jpg/500px-Chamath_Palihapitiya_in_2025.jpg", name: "THE ALL IN GUYS", line: "you're really good at tech twitter (or a certain part of the internet) but you've gotta become more well rounded, dude." },
+    4:  { image: "assets/persona-4-1.png", name: "THE ALL IN GUYS", line: "you're really good at tech twitter (or a certain part of the internet) but you've gotta become more well rounded, dude." },
     3:  { image: "assets/persona-3-1.jpg", name: "JOJO SIWA", line: "you love your maximalism which is great but you need to find more taste, sweetie." },
     2:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Jimmy_Fallon%2C_Montclair_Film_Festival%2C_2013.jpg/500px-Jimmy_Fallon%2C_Montclair_Film_Festival%2C_2013.jpg", name: "JIMMY FALLON", line: "you're so loveable but bland. live a little. watch some more tiktok." },
     1:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg/500px-KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg", name: "KATY PERRY", line: "you were great. or at least you used to be. now you're losing the plot. let's refine these tastes please." },
-    0:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg/500px-KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg", name: "KATY PERRY", line: "you were great. or at least you used to be. now you're losing the plot. let's refine these tastes please." }
+    0:  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Hilaria_Baldwin%28cropped%29.jpg/500px-Hilaria_Baldwin%28cropped%29.jpg", name: "HILARIA BALDWIN", line: "look i'm sure you're cool in real life (mira, estoy segura de que eres genial en la vida real), but our tastes just do not align (pero nuestros gustos simplemente no se alinean)!" }
   };
 
   function showResult() {
     stage.classList.remove('active');
     resultStage.classList.add('active');
+    const skipWrap = document.getElementById('skip-to-refer-wrap');
+    if (skipWrap) skipWrap.style.display = 'none';
     document.getElementById('score').textContent = score;
+    const heroEl = document.querySelector('.cover-score-hero');
+    if (heroEl) heroEl.classList.toggle('is-ten', score === 10);
     const p = personas[score] || personas[5];
     const emojiEl = document.getElementById('personaEmoji');
     if (p.image) {
@@ -2380,12 +2428,13 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     if (!btn) return;
     btn.addEventListener('click', () => {
       const p = personas[score] || personas[5];
-      const url = 'https://kendallhtucker.github.io/creative-experimentation/#hiring';
-      const text = `i scored ${score}/10 on the internet taste test.\n\nthey said i'm like ${p.name.toLowerCase()}. ${p.line}`;
+      const url = `https://kendallhtucker.github.io/creative-experimentation/#result/${score}`;
+      const cta = score >= 8 ? "bet you can't beat me:" : "i'm ashamed, can you do better:";
+      const text = `i scored ${score}/10 on the internet taste test. they said i'm like ${p.name.toLowerCase()}. ${cta}`;
       if (navigator.share) {
         navigator.share({ text, url });
       } else {
-        navigator.clipboard.writeText(`${text}\n\n${url}`);
+        navigator.clipboard.writeText(`${text} ${url}`);
         alert('copied to clipboard ✨');
       }
     });

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bowlby+One&family=VT323&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #000; }
+  body {
+    position: relative;
+    color: #fff;
+    font-family: "Bungee", "Impact", sans-serif;
+  }
+  /* Starfield */
+  .stars {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(2px 2px at 80px 60px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 220px 110px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 340px 50px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 540px 90px, #fff 50%, transparent 51%),
+      radial-gradient(2.5px 2.5px at 720px 40px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 960px 110px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 1080px 70px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 120px 280px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 380px 340px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 640px 380px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 880px 260px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 1120px 350px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 60px 480px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 320px 550px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 550px 510px, #fff 50%, transparent 51%),
+      radial-gradient(2.5px 2.5px at 800px 580px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 1020px 540px, #fff 50%, transparent 51%);
+  }
+  .shooting {
+    position: absolute;
+    top: 70px; left: 880px;
+    width: 90px; height: 2px;
+    background: linear-gradient(90deg, transparent, #ffcc00);
+    transform: rotate(-30deg);
+    opacity: 0.85;
+  }
+  .shooting-2 {
+    position: absolute;
+    top: 520px; left: 180px;
+    width: 70px; height: 2px;
+    background: linear-gradient(90deg, transparent, #ffcc00);
+    transform: rotate(20deg);
+    opacity: 0.8;
+  }
+
+  /* Decorative planets in corners */
+  .planet { position: absolute; border-radius: 50%; box-shadow: inset -10px -10px 30px rgba(0,0,0,0.5); }
+  .p-purple {
+    width: 120px; height: 120px;
+    top: 40px; right: 70px;
+    background: radial-gradient(circle at 30% 30%, #c397ff, #6c4cb8 60%, #3a2666);
+  }
+  .p-purple::after {
+    content: ""; position: absolute;
+    width: 190px; height: 30px;
+    border: 8px solid #d4a8ff;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-18deg);
+    box-sizing: border-box;
+    opacity: 0.75;
+  }
+  .p-jupiter {
+    width: 130px; height: 130px;
+    bottom: 30px; left: 60px;
+    background:
+      radial-gradient(circle at 35% 35%, #ffd99e, #c97c2e 55%, #6f3d10),
+      repeating-linear-gradient(180deg, rgba(0,0,0,0.15) 0 6px, transparent 6px 14px);
+    background-blend-mode: multiply, normal;
+  }
+  .p-pink {
+    width: 100px; height: 100px;
+    bottom: 80px; right: 90px;
+    background: radial-gradient(circle at 35% 35%, #ff7fc8, #ff3399 55%, #8b0a4b);
+    box-shadow: inset -10px -10px 30px rgba(0,0,0,0.5), 0 0 50px rgba(255,51,153,0.65);
+  }
+  .p-pink::after {
+    content: ""; position: absolute;
+    width: 170px; height: 26px;
+    border: 7px solid #ffaad6;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(20deg);
+    box-sizing: border-box;
+    opacity: 0.85;
+  }
+  .p-tiny {
+    width: 55px; height: 55px;
+    top: 60px; left: 90px;
+    background: radial-gradient(circle at 35% 35%, #ff9fd0, #ff5db8 60%, #7a0d4d);
+    box-shadow: 0 0 35px rgba(255,51,153,0.55);
+  }
+
+  /* Sun (centered) */
+  .sun-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+  }
+  .sun-halo {
+    position: absolute;
+    width: 540px; height: 540px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,204,51,0.45) 0%, rgba(255,51,153,0.22) 32%, transparent 62%);
+    pointer-events: none;
+  }
+  .sun-orbit {
+    position: absolute;
+    width: 480px; height: 480px;
+    border: 2px dashed rgba(255, 204, 51, 0.55);
+    border-radius: 50%;
+  }
+  .sun-orbit.r2 {
+    width: 560px; height: 560px;
+    border-style: dotted;
+    border-color: rgba(255, 51, 153, 0.55);
+  }
+  .sun {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 24px;
+  }
+  .sun-logo {
+    font-family: "Bungee", "Impact", sans-serif;
+    font-size: 140px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    line-height: 0.9;
+    color: #ffcc00;
+    text-shadow:
+      8px 8px 0 #ff3399,
+      16px 16px 0 #4a002a,
+      0 0 50px rgba(255, 204, 51, 0.6);
+    transform: skewX(-6deg);
+  }
+  .sun-subline {
+    margin-top: 22px;
+    font-family: "Bungee", "Impact", sans-serif;
+    font-size: 30px;
+    letter-spacing: 6px;
+    line-height: 1.15;
+    color: #fff5d6;
+    -webkit-text-stroke: 1.5px #000;
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 #ff3399;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="shooting"></div>
+  <div class="shooting-2"></div>
+
+  <div class="planet p-purple"></div>
+  <div class="planet p-jupiter"></div>
+  <div class="planet p-pink"></div>
+  <div class="planet p-tiny"></div>
+
+  <div class="sun-wrap">
+    <div class="sun-halo"></div>
+    <div class="sun-orbit"></div>
+    <div class="sun-orbit r2"></div>
+    <div class="sun">
+      <div class="sun-logo">RAMP</div>
+      <div class="sun-subline">CREATIVE<br>EXPERIMENTATION<br>TEAM</div>
+    </div>
+  </div>
+</body>
+</html>

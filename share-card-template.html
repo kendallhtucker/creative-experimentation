@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bowlby+One&family=VT323&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #000; }
+  body {
+    position: relative;
+    color: #fff;
+    font-family: "Bungee", "Impact", sans-serif;
+  }
+  /* Starfield */
+  .stars {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(2px 2px at 80px 60px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 220px 110px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 340px 50px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 540px 90px, #fff 50%, transparent 51%),
+      radial-gradient(2.5px 2.5px at 720px 40px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 960px 110px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 1080px 70px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 120px 280px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 380px 340px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 640px 380px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 880px 260px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 1120px 350px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 60px 480px, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 320px 550px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 550px 510px, #fff 50%, transparent 51%),
+      radial-gradient(2.5px 2.5px at 800px 580px, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 1020px 540px, #fff 50%, transparent 51%);
+  }
+  .shooting {
+    position: absolute;
+    top: 80px; left: 720px;
+    width: 90px; height: 2px;
+    background: linear-gradient(90deg, transparent, #ffcc00);
+    transform: rotate(-30deg);
+    opacity: 0.85;
+  }
+
+  /* Pink halo behind the photo (now smaller + further left) */
+  .halo {
+    position: absolute;
+    left: -250px; top: 60px;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 51, 153, 0.55) 0%, rgba(255, 51, 153, 0.2) 35%, transparent 60%);
+    filter: blur(20px);
+    z-index: 1;
+  }
+
+  /* Photo: pushed way off-canvas so only a sliver is visible — decorative edge element */
+  .photo-wrap {
+    position: absolute;
+    left: -310px; bottom: 0;
+    height: 600px;
+    z-index: 2;
+  }
+  .photo-wrap img {
+    height: 100%;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 0 25px rgba(255, 51, 153, 0.5));
+  }
+
+  /* Planets */
+  .planet { position: absolute; border-radius: 50%; box-shadow: inset -10px -10px 30px rgba(0,0,0,0.5); z-index: 3; }
+  .p1 {
+    width: 110px; height: 110px;
+    top: 22px; right: 36px;
+    background: radial-gradient(circle at 30% 30%, #c397ff, #6c4cb8 60%, #3a2666);
+  }
+  .p1::after {
+    content: ""; position: absolute;
+    width: 180px; height: 28px;
+    border: 8px solid #d4a8ff;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-18deg);
+    box-sizing: border-box;
+    opacity: 0.75;
+  }
+  .p3 {
+    width: 95px; height: 95px;
+    bottom: 90px; right: 52px;
+    background: radial-gradient(circle at 35% 35%, #ff7fc8, #ff3399 55%, #8b0a4b);
+    box-shadow: inset -10px -10px 30px rgba(0,0,0,0.5), 0 0 50px rgba(255,51,153,0.65);
+  }
+  .p3::after {
+    content: ""; position: absolute;
+    width: 160px; height: 25px;
+    border: 7px solid #ffaad6;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(20deg);
+    box-sizing: border-box;
+    opacity: 0.85;
+  }
+
+  /* HEADER */
+  .header {
+    position: absolute;
+    top: 26px; left: 0; right: 0;
+    text-align: center;
+    color: #ffcc00;
+    font-size: 60px;
+    letter-spacing: 5px;
+    -webkit-text-stroke: 2px #000;
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0 #ff3399;
+    z-index: 4;
+  }
+
+  /* TEXT STACK (centered, score-forward) */
+  .text-stack {
+    position: absolute;
+    left: 0; right: 0;
+    top: 130px;
+    z-index: 4;
+    text-align: center;
+  }
+  .score-label {
+    font-size: 26px;
+    letter-spacing: 6px;
+    color: #fff5d6;
+    margin-bottom: 6px;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .score {
+    font-size: 200px;
+    line-height: 1;
+    color: #ff3399;
+    -webkit-text-stroke: 3px #000;
+    paint-order: stroke fill;
+    text-shadow:
+      8px 8px 0 #ffcc00,
+      14px 14px 0 #4a002a;
+    margin-bottom: 22px;
+  }
+  .score .slash { color: #ffcc00; margin: 0 4px; }
+  .score .total { color: #fff5d6; }
+  .like-label {
+    font-size: 22px;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-bottom: 6px;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .persona {
+    font-size: 52px;
+    line-height: 1.05;
+    color: #ffcc00;
+    -webkit-text-stroke: 2px #000;
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0 #ff3399;
+    letter-spacing: 2px;
+  }
+
+  /* FOOTER */
+  .footer {
+    position: absolute;
+    bottom: 26px; left: 0; right: 0;
+    text-align: center;
+    color: #fff5d6;
+    font-size: 18px;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1.2px #000;
+    paint-order: stroke fill;
+    text-shadow: 2.5px 2.5px 0 #ff3399;
+    white-space: nowrap;
+    z-index: 4;
+  }
+</style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="shooting"></div>
+  <div class="halo"></div>
+
+  <div class="photo-wrap">
+    <img src="assets/persona-8-2-bg-removed.png" alt="Hudson &amp; Connor">
+  </div>
+
+  <div class="planet p1"></div>
+  <div class="planet p3"></div>
+
+  <div class="header">★ INTERNET TASTE TEST ★</div>
+
+  <div class="text-stack">
+    <div class="score-label">I SCORED</div>
+    <div class="score"><span>8</span><span class="slash">/</span><span class="total">10</span></div>
+    <div class="like-label">I'M LIKE</div>
+    <div class="persona">HUDSON &amp; CONNOR</div>
+  </div>
+
+  <div class="footer">★ TAKE IT YOURSELF ★ HELP RAMP FIND THEIR VIRAL CREATIVE PRODUCER ★</div>
+</body>
+</html>
