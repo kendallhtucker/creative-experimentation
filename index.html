@@ -765,6 +765,39 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       border: 0;
       display: block;
     }
+    .pullquote {
+      margin: 24px 0;
+      padding: 22px 26px;
+      border-left: 4px solid var(--gold);
+      border-right: 4px solid var(--hot);
+      background: linear-gradient(135deg, rgba(255, 204, 51, 0.08) 0%, rgba(255, 51, 153, 0.10) 100%);
+      position: relative;
+    }
+    .pullquote::before {
+      content: "\201C";
+      position: absolute;
+      top: -14px;
+      left: 14px;
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 72px;
+      line-height: 1;
+      color: var(--gold);
+      text-shadow: 2px 2px 0 #000;
+    }
+    .pullquote p {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.4;
+      color: var(--cream);
+    }
+    .pullquote p:last-child { margin-bottom: 0; }
+    .pullquote .kicker {
+      font-family: "Bungee", "Impact", sans-serif;
+      font-size: 18px;
+      color: var(--hot);
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
     .media-card.photo {
       padding: 0;
       overflow: hidden;
@@ -779,6 +812,14 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       aspect-ratio: 4/5;
     }
     .media-card.photo.wide img { aspect-ratio: 3/2; }
+    .media-card.photo.fullbleed { padding: 0; background: #fff; }
+    .media-card.photo.fullbleed img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+      display: block;
+    }
     .media-card.photo .caption {
       padding: 6px 10px;
       font-size: 13px;
@@ -1864,133 +1905,72 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <span>Talent: x10</span>
     </div>
 
-    <p>after <a href="#brian-box" data-page="brian-box">brian in a box</a> blew up, we knew our super bowl moment had to be brian again. the question was how to do a super bowl ad in a way people would actually talk about.</p>
-
-    <p>we couldn't stop laughing at the same line: <strong>what's better than one brian? many brians.</strong> that became the ad. brian baumgartner multiplied into ten of himself. <em>ramp multiplies what's possible.</em></p>
-
-    <p>but a super bowl ad is the easy part. the harder part is making the moment feel inevitable everywhere the camera isn't. so we made the rest of it too:</p>
-    <ul>
-      <li><strong>10 pieces of original social content</strong> rolling out across launch week</li>
-      <li><strong>a brian-themed party</strong> where guests came dressed as brian</li>
-      <li><strong>a brian baumgartner look-alike contest</strong> at the party</li>
-      <li><strong>the two winners got flown to the super bowl</strong> with us</li>
-      <li><strong>bald caps shipped nationwide</strong> to anyone who asked — the whole country got to cosplay along</li>
-    </ul>
-
-    <h2>the highlights</h2>
     <div class="stat-row">
       <div class="stat-cell"><div class="num">10</div><div class="lbl">Brians</div></div>
       <div class="stat-cell"><div class="num">1</div><div class="lbl">Super Bowl</div></div>
       <div class="stat-cell"><div class="num">278M</div><div class="lbl">views</div></div>
     </div>
 
-    <h2>the rollout</h2>
-    <div class="media-grid">
-      <div class="media-card photo wide">
-        <img src="assets/multiplying-brian/jet-life-still.jpg" alt="Ten Brians walking off a private jet labeled ramp Air">
-        <div class="caption">arrivals: jet life still</div>
-      </div>
-      <div class="media-card photo">
-        <img src="assets/multiplying-brian/brian-sunglasses.jpg" alt="Brian Baumgartner in sunglasses on the tarmac">
-        <div class="caption">brian, in costume</div>
-      </div>
-      <div class="media-card photo">
-        <img src="assets/multiplying-brian/missing-poster.jpg" alt="A MISSING street poster of Brian, taped to a pole">
-        <div class="caption">guerrilla "missing" posters before the game</div>
-      </div>
-    </div>
+    <p>after <a href="#brian-box" data-page="brian-box">brian in a box</a> blew up, we knew our super bowl moment had to be brian again. the question was how to do a super bowl ad in a way people would actually talk about.</p>
 
-    <h2>the ad</h2>
+    <p>the image we kept coming back to was ten brians showing up at the game together. what is better than one brian? many brians. <em>ramp multiplies what's possible.</em> we worked backwards from that stunt idea into our ad.</p>
+
     <div class="media-card video" style="margin: 14px 0 20px;">
       <iframe src="https://www.youtube-nocookie.com/embed/1-mgrFS00B0?rel=0&modestbranding=1" title="Ramp Super Bowl LX — Multiply What's Possible" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div class="caption">"Multiply What's Possible" — Ramp Super Bowl LX commercial</div>
     </div>
 
-    <h2>the content</h2>
-    <div class="media-grid">
-      <div class="media-card tall">
-        <iframe src="https://www.instagram.com/p/DUg9zSmEqdq/embed/" allowfullscreen scrolling="no"></iframe>
-        <div class="caption">@ramp.com on instagram</div>
-      </div>
-      <div class="media-card tall">
-        <iframe src="https://www.tiktok.com/embed/v2/7600443031057190174" allowfullscreen scrolling="no" allow="encrypted-media;"></iframe>
-        <div class="caption">@ramp.com on tiktok</div>
-      </div>
-      <div class="media-card tall">
-        <iframe src="https://www.tiktok.com/embed/v2/7604626954255338765" allowfullscreen scrolling="no" allow="encrypted-media;"></iframe>
-        <div class="caption">@andrewtourssf on tiktok</div>
-      </div>
-      <div class="media-card reddit-embed-wrap">
-        <blockquote class="reddit-embed-bq" style="height:740px" data-embed-height="740">
-          <a href="https://www.reddit.com/r/mildlyinteresting/comments/1qzncj1/walked_past_a_kevin_from_the_office_lookalike/">Walked past a Kevin from The Office look-alike contest today and took a picture of the winner</a><br>by
-          <a href="https://www.reddit.com/user/PsychologicalCost5/">u/PsychologicalCost5</a> in
-          <a href="https://www.reddit.com/r/mildlyinteresting/">mildlyinteresting</a>
-        </blockquote>
-        <script async src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
-      </div>
+    <p>a super bowl ad on its own is the easy part. the harder part is making the moment feel inevitable everywhere the camera isn't. so we built the rest of it too.</p>
+
+    <p>we rolled out 10 pieces of original social content across launch week.</p>
+    <div class="media-card tall" style="max-width: 360px; margin: 12px 0 4px;">
+      <iframe src="https://www.tiktok.com/embed/v2/7600443031057190174" allowfullscreen scrolling="no" allow="encrypted-media;"></iframe>
+      <div class="caption">@ramp.com on tiktok</div>
     </div>
 
-    <h2>the party</h2>
-    <p>we threw a brian-themed tailgate the day of the game. guests showed up in costume. a brian baumgartner look-alike contest crowned two winners on stage. we flew both of them to the super bowl.</p>
-    <div class="media-grid">
+    <p>we threw a brian-themed party in san francisco the day of the game, where guests came dressed as brian.</p>
+    <div class="media-grid" style="margin: 12px 0 4px;">
       <div class="media-card photo wide">
         <img src="assets/multiplying-brian/tailgate-wide-banner.jpg" alt="Crowd at the Ramp tailgate under the 'Ramp multiplies what's possible' banner">
-        <div class="caption">tailgate, day of</div>
-      </div>
-      <div class="media-card photo">
-        <img src="assets/multiplying-brian/brians-party-easel.jpg" alt="Brian Baumgartner presenting a 'BRIAN'S PARTY' easel">
-        <div class="caption">brian RSVPs his own party</div>
       </div>
       <div class="media-card photo">
         <img src="assets/multiplying-brian/tailgate-brian-mic.jpg" alt="Brian Baumgartner on the mic at the tailgate">
-        <div class="caption">brian on the mic</div>
-      </div>
-      <div class="media-card photo">
-        <img src="assets/multiplying-brian/tailgate-best-brian-winner.jpg" alt="Brian standing with a contest winner wearing a 'BEST BRIAN' sash">
-        <div class="caption">crowning the best brian</div>
       </div>
       <div class="media-card photo">
         <img src="assets/multiplying-brian/tailgate-winner-jersey.jpg" alt="A look-alike contest winner receiving a jersey on stage">
-        <div class="caption">winners flown to the game</div>
       </div>
       <div class="media-card photo">
         <img src="assets/multiplying-brian/tailgate-attendee-bald-cap.jpg" alt="Attendee at the tailgate wearing a Brian bald cap">
-        <div class="caption">attendee, in costume</div>
       </div>
       <div class="media-card photo">
         <img src="assets/multiplying-brian/tailgate-medicine-ball.jpg" alt="Attendee in Ramp jersey holding a Ramp-branded medicine ball">
-        <div class="caption">tailgate games</div>
       </div>
       <div class="media-card photo">
         <img src="assets/multiplying-brian/tailgate-pug-bald-cap.jpg" alt="A pug at the tailgate wearing a Brian bald cap">
-        <div class="caption">even the dogs got in</div>
-      </div>
-      <div class="media-card photo">
-        <img src="assets/multiplying-brian/bald-cap-product.jpg" alt="The Brian bald cap product with 'HAIR INCLUDED!' tag">
-        <div class="caption">free bald caps, hair included</div>
       </div>
     </div>
 
-    <h2>press &amp; coverage</h2>
-    <div class="media-grid">
-      <a class="media-card article" href="https://www.adweek.com/creativity/brian-baumgartner-is-the-true-star-of-the-office-in-ramps-super-bowl-ad/" target="_blank" rel="noopener">
-        <div class="article-bg has-image" style="--bg-img: url('https://static-www.adweek.com/wp-content/uploads/2026/02/RampSuperBowl2026.png?w=1200');"></div>
-        <div class="caption">
-          <span class="outlet">Adweek</span>
-          "Brian Baumgartner is the true star of The Office in Ramp's Super Bowl Ad"
-        </div>
-      </a>
-      <a class="media-card article" href="https://ew.com/the-office-star-brian-baumgartner-2026-super-bowl-stunt-11898116" target="_blank" rel="noopener">
-        <div class="article-bg has-image" style="--bg-img: url('assets/press/ew-multiplying-brian.png');"></div>
-        <div class="caption">
-          <span class="outlet">Entertainment Weekly</span>
-          "The Office star Brian Baumgartner stars in Ramp's 2026 Super Bowl stunt"
-        </div>
-      </a>
+    <p>at the party, we ran a brian baumgartner look-alike contest.</p>
+    <div class="media-card photo" style="max-width: 480px; margin: 12px 0 4px;">
+      <img src="assets/multiplying-brian/tailgate-best-brian-winner.jpg" alt="Brian standing with a contest winner wearing a 'BEST BRIAN' sash">
     </div>
 
-    <h2>the takeaway</h2>
-    <p>we spent the lead-up convinced we were about to get kicked out of the stadium. instead an NFL exec walked up to us at concessions, said he loved it, and told us he was hoping the league would switch to ramp. you hearing this, NFL?</p>
+    <p>the two winners got tickets to the super bowl.</p>
+    <div class="media-card photo wide" style="margin: 12px 0 4px;">
+      <img src="assets/multiplying-brian/winners-jerseys.jpg" alt="The two look-alike contest winners on stage with Brian Baumgartner holding Ramp #26 jerseys, crowd cheering behind them">
+    </div>
+
+    <p>we shipped bald caps nationwide to anyone who wanted to help multiply brian.</p>
+    <div class="media-card photo fullbleed" style="margin: 12px 0 4px;">
+      <img src="assets/multiplying-brian/brian-hair-store.jpg" alt="Brian Hair™ — Official Bald Cap of Brian's Super Bowl Tailgate, free, sold out on the Ramp store">
+    </div>
+
+    <p>and we actually brought 10 brians to the game!!</p>
+    <div class="media-card tall" style="max-width: 360px; margin: 12px 0 4px;">
+      <iframe src="https://www.instagram.com/p/DUg9zSmEqdq/embed/" allowfullscreen scrolling="no"></iframe>
+    </div>
+
+    <p style="margin-top: 432px;">PS. One thing I was really nervous about was getting kicked out of the stadium. instead, an exec from the NFL walked up to me at concessions and said he loved our stunt and was hoping the league would switch to ramp. you hearing this, NFL???</p>
   </div>
   <div class="hiring-footer">
     <a class="hiring-footer-link" data-back>learn more about ramp's creative experimentation team →</a>
