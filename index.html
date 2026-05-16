@@ -2363,41 +2363,20 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     });
   });
 
-  // open from URL on load: supports both hash (#result/N) and path-style (/result/N/) routes.
-  // After processing, replaceState swaps the URL bar to the path-style canonical URL.
+  // open from URL on load: /hiring/, /refer/, or hash routes for other planets.
+  // Result URLs are intentionally NOT supported — the only way to reach the
+  // unlocked apply form is by actually passing the taste test. The share artifact
+  // is the per-score PNG image, not a URL.
   window.addEventListener('DOMContentLoaded', () => {
-    // Try path first (e.g., /hiring/, /result/8/), then fall back to hash
     const path = window.location.pathname;
     const hash = window.location.hash.replace('#', '');
-    const resultPath = path.match(/\/result\/(\d+)\/?$/);
     const hiringPath = /\/hiring\/?$/.test(path);
-    const resultHash = hash.match(/^result\/(\d+)$/);
 
     let route = null;
-    if (resultPath) route = { kind: 'result', score: parseInt(resultPath[1], 10) };
-    else if (hiringPath) route = { kind: 'page', id: 'hiring' };
-    else if (resultHash) route = { kind: 'result', score: parseInt(resultHash[1], 10) };
+    if (hiringPath) route = { kind: 'page', id: 'hiring' };
     else if (hash) route = { kind: 'page', id: hash };
 
     if (!route) return;
-
-    if (route.kind === 'result' && route.score >= 0 && route.score <= 10) {
-      openPage('hiring');
-      setTimeout(() => {
-        const wrap = document.getElementById('taste-wrap');
-        const intro = document.getElementById('taste-intro');
-        if (wrap) wrap.classList.remove('intro-mode');
-        if (intro) intro.style.display = 'none';
-        if (typeof stage !== 'undefined') stage.classList.remove('active');
-        score = route.score;
-        showResult();
-        const resultEl = document.getElementById('taste-result-stage');
-        if (resultEl) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Canonicalize URL bar to path-style if we arrived via hash
-        history.replaceState(null, '', navUrl('result/' + route.score));
-      }, 50);
-      return;
-    }
     if (route.kind === 'page') {
       openPage(route.id);
       // Canonicalize URL bar
@@ -2607,8 +2586,6 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     document.getElementById('score').textContent = score;
     const heroEl = document.querySelector('.cover-score-hero');
     if (heroEl) heroEl.classList.toggle('is-ten', score === 10);
-    // Canonicalize URL to /result/{score}/ so copying from address bar shares the right card
-    try { history.replaceState(null, '', navUrl('result/' + score)); } catch (e) {}
     const p = personas[score] || personas[5];
     const emojiEl = document.getElementById('personaEmoji');
     if (p.image) {
@@ -2622,7 +2599,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     const applySection = document.getElementById('apply-section');
     const referSection = document.getElementById('refer-section');
     verdict.innerHTML = p.line;
-    const shareBtn = `<button class="next-btn share-secondary" id="share-score">★ share my score ★</button>`;
+    const shareBtn = `<button class="next-btn share-secondary" id="share-score">★ SAVE YOUR CARD ★</button>`;
     if (score >= 9) {
       // Move apply form inside the cover so it becomes the focal point
       const cover = document.querySelector('.cover');
@@ -2656,16 +2633,34 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   function wireShareButton() {
     const btn = document.getElementById('share-score');
     if (!btn) return;
-    btn.addEventListener('click', () => {
-      const p = personas[score] || personas[5];
-      const url = `https://kendallhtucker.github.io/creative-experimentation/result/${score}/`;
-      const cta = score >= 8 ? "bet you can't beat me:" : "i'm ashamed, can you do better:";
-      const text = `i scored ${score}/10 on the internet taste test. they said i'm like ${p.name.toLowerCase()}. ${cta}`;
-      if (navigator.share) {
-        navigator.share({ text, url });
-      } else {
-        navigator.clipboard.writeText(`${text} ${url}`);
-        alert('copied to clipboard ✨');
+    btn.addEventListener('click', async () => {
+      const scoreStr = String(score).padStart(2, '0');
+      const imageUrl = `assets/share-cards/share-card-result-${scoreStr}.png`;
+      const filename = `internet-taste-test-${scoreStr}.png`;
+      const originalLabel = btn.innerHTML;
+      try {
+        const resp = await fetch(imageUrl);
+        const blob = await resp.blob();
+        const file = new File([blob], filename, { type: 'image/png' });
+        // Web Share API w/ files: iOS Safari and Chrome Android open the system
+        // share sheet (Stories, Twitter, iMessage, etc.) directly.
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file] });
+          return;
+        }
+        // Desktop / unsupported browsers: trigger a download.
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+        btn.innerHTML = '★ SAVED — POST IT ★';
+        setTimeout(() => { btn.innerHTML = originalLabel; }, 2500);
+      } catch (err) {
+        // Last-ditch: open the image in a new tab so user can save manually.
+        window.open(imageUrl, '_blank');
       }
     });
   }
