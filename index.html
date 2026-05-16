@@ -2611,7 +2611,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     const p = personas[score] || personas[5];
     const emojiEl = document.getElementById('personaEmoji');
     if (p.image) {
-      emojiEl.innerHTML = `<img class="persona-image" src="${p.image}" alt="${p.name}">`;
+      emojiEl.innerHTML = `<img class="persona-image" src="${SITE_BASE}${p.image}" alt="${p.name}">`;
     } else {
       emojiEl.textContent = p.emoji;
     }
@@ -2657,7 +2657,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     if (!btn) return;
     btn.addEventListener('click', async () => {
       const scoreStr = String(score).padStart(2, '0');
-      const imageUrl = `assets/share-cards/share-card-result-${scoreStr}.png`;
+      const imageUrl = `${SITE_BASE}assets/share-cards/share-card-result-${scoreStr}.png`;
       const filename = `internet-taste-test-${scoreStr}.png`;
       const originalLabel = btn.innerHTML;
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
