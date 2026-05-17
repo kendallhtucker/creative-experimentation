@@ -1517,83 +1517,6 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       color: #1a0033;
       opacity: 1;
     }
-
-    /* SAVE-CARD MODAL */
-    .card-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.85);
-      animation: card-modal-fade 0.2s ease-out;
-    }
-    .card-modal[hidden] { display: none; }
-    @keyframes card-modal-fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .card-modal-content {
-      position: relative;
-      max-width: 100%;
-      width: min(640px, 100%);
-      text-align: center;
-    }
-    .card-modal-img {
-      width: 100%;
-      height: auto;
-      border: 2px solid var(--gold);
-      box-shadow: 0 0 32px rgba(255, 51, 153, 0.45);
-      display: block;
-      background: #000;
-    }
-    .card-modal-hint {
-      font-family: "VT323", monospace;
-      font-size: 18px;
-      color: var(--cream);
-      margin: 12px 0 8px;
-      letter-spacing: 0.5px;
-    }
-    .card-modal-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .card-modal-btn {
-      font-family: "Bungee", "Impact", sans-serif;
-      font-size: 13px;
-      letter-spacing: 1px;
-      padding: 8px 18px;
-      background: var(--gold);
-      color: #1a0033;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .card-modal-btn:hover { background: var(--hot); color: var(--cream); }
-    .card-modal-btn.ghost {
-      background: transparent;
-      color: var(--cream);
-      border: 1px solid var(--cream);
-    }
-    .card-modal-btn.ghost:hover { background: var(--cream); color: #1a0033; }
-    .card-modal-close {
-      position: absolute;
-      top: -36px;
-      right: 0;
-      background: transparent;
-      border: none;
-      color: var(--cream);
-      font-size: 28px;
-      cursor: pointer;
-      padding: 0 8px;
-      line-height: 1;
-    }
-    .card-modal-close:hover { color: var(--hot); }
     .taste-result .score {
       font-family: "Bungee", "Impact", sans-serif;
       font-size: 56px;
@@ -2732,43 +2655,34 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   function wireShareButton() {
     const btn = document.getElementById('share-score');
     if (!btn) return;
-    btn.addEventListener('click', () => {
-      const scoreStr = String(score).padStart(2, '0');
-      const imageUrl = `${SITE_BASE}assets/share-cards/share-card-result-${scoreStr}.png`;
-      const filename = `internet-taste-test-${scoreStr}.png`;
-      openCardModal(imageUrl, filename);
+    btn.addEventListener('click', async () => {
+      const shareUrl = window.location.protocol === 'file:'
+        ? 'https://kendallhtucker.github.io/creative-experimentation/'
+        : window.location.origin + SITE_BASE;
+      const shareData = {
+        title: 'Internet Taste Test',
+        text: `i scored ${score}/10 on the internet taste test. ramp is hiring a viral creative producer.`,
+        url: shareUrl,
+      };
+      const originalLabel = btn.innerHTML;
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+          return;
+        }
+      } catch (err) {
+        if (err && err.name === 'AbortError') return; // user dismissed
+      }
+      // Desktop / no share API: copy URL to clipboard.
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        btn.innerHTML = '★ LINK COPIED ★';
+        setTimeout(() => { btn.innerHTML = originalLabel; }, 2500);
+      } catch (err) {
+        window.prompt('Copy this link:', shareUrl);
+      }
     });
   }
-
-  function openCardModal(imageUrl, filename) {
-    const modal = document.getElementById('card-modal');
-    const img = document.getElementById('card-modal-img');
-    const dl = document.getElementById('card-modal-download');
-    if (!modal || !img || !dl) return;
-    img.src = imageUrl;
-    dl.href = imageUrl;
-    dl.setAttribute('download', filename);
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-  }
-  function closeCardModal() {
-    const modal = document.getElementById('card-modal');
-    if (!modal) return;
-    modal.hidden = true;
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('card-modal');
-    if (!modal) return;
-    document.getElementById('card-modal-close').addEventListener('click', closeCardModal);
-    document.getElementById('card-modal-close-btn').addEventListener('click', closeCardModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeCardModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.hidden) closeCardModal();
-    });
-  });
   function wireScrollToApply() {
     document.querySelectorAll('[data-scroll-to-apply]').forEach(a => {
       a.addEventListener('click', (e) => {
@@ -2870,18 +2784,6 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     return false;
   }
 </script>
-
-<div class="card-modal" id="card-modal" hidden>
-  <div class="card-modal-content">
-    <button class="card-modal-close" id="card-modal-close" aria-label="Close">×</button>
-    <img class="card-modal-img" id="card-modal-img" src="" alt="Your taste test result card">
-    <p class="card-modal-hint">long-press the image to save • then post it</p>
-    <div class="card-modal-actions">
-      <a class="card-modal-btn" id="card-modal-download" download>★ DOWNLOAD ★</a>
-      <button class="card-modal-btn ghost" id="card-modal-close-btn">CLOSE</button>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
