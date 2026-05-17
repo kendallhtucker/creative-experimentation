@@ -2696,7 +2696,10 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       const scoreStr = String(score).padStart(2, '0');
       const imageUrl = `${SITE_BASE}assets/share-cards-ig/share-card-result-${scoreStr}.png`;
       const filename = `internet-taste-test-${scoreStr}.png`;
-      const text = `i scored ${score}/10 on the internet taste test.`;
+      const shareUrl = window.location.protocol === 'file:'
+        ? 'https://kendallhtucker.github.io/creative-experimentation/'
+        : window.location.origin + SITE_BASE;
+      const text = `i scored ${score}/10 on the internet taste test. try it yourself: ${shareUrl}`;
       const originalLabel = btn.innerHTML;
       try {
         const resp = await fetch(imageUrl);
