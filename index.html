@@ -31,6 +31,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bowlby+One&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script async src="https://www.instagram.com/embed.js"></script>
   <style>
     :root {
       --bg: #000;
@@ -1155,10 +1156,9 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       border: 0;
       background: #fff;
     }
-    /* Instagram embed height is sized dynamically by JS via the MEASURE
-       postMessage event from instagram.com. min-height prevents layout jank
-       before the message arrives. */
-    .embed-container iframe.embed-ig { min-height: 560px; }
+    /* Instagram embeds use the official blockquote + embed.js pattern.
+       embed.js converts each blockquote into an auto-sizing iframe via
+       a postMessage handshake — no hardcoded height needed here. */
     .embed-container blockquote.twitter-tweet {
       width: 100% !important;
       max-width: 540px !important;
@@ -1787,8 +1787,8 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
     <p>the premise: ramp hired brian as our spokesperson. brian thinks he was hired as our new chief accounting officer. he's been training for the role for 20 years (on tv). nobody had the heart to tell him about the software.</p>
 
-    <div class="media-card tall" style="max-width: 360px; margin: 12px 0 4px;">
-      <iframe src="https://www.instagram.com/reel/DPRhBGhjbXw/embed/" allowfullscreen scrolling="no"></iframe>
+    <div style="max-width: 360px; margin: 12px 0 4px;">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DPRhBGhjbXw/" data-instgrm-version="14" style="background:#fff;border:0;margin:0 auto;max-width:360px;width:100%;"><a href="https://www.instagram.com/reel/DPRhBGhjbXw/"></a></blockquote>
     </div>
 
     <p>every hour the internet voted on what happened to him next. two buttons: <strong>help him</strong>, or <strong>make it worse</strong>. if "make it worse" won, the box opened and a fresh avalanche of receipts rained down on him. people voted to make it worse. a lot.</p>
@@ -1959,8 +1959,8 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     </div>
 
     <p>and we actually brought 10 brians to the game!!</p>
-    <div class="media-card tall" style="max-width: 360px; margin: 12px 0 4px;">
-      <iframe src="https://www.instagram.com/p/DUg9zSmEqdq/embed/" allowfullscreen scrolling="no"></iframe>
+    <div style="max-width: 360px; margin: 12px 0 4px;">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUg9zSmEqdq/" data-instgrm-version="14" style="background:#fff;border:0;margin:0 auto;max-width:360px;width:100%;"><a href="https://www.instagram.com/p/DUg9zSmEqdq/"></a></blockquote>
     </div>
 
     <p style="margin-top: 432px;">PS. One thing I was really nervous about was getting kicked out of the stadium. instead, an exec from the NFL walked up to me at concessions and said he loved our stunt and was hoping the league would switch to ramp. you hearing this, NFL???</p>
@@ -2387,23 +2387,10 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     }
   });
 
-  // Instagram embeds post their rendered content height to the parent window
-  // via a MEASURE message. Listen for it and size each IG iframe to its real
-  // height so we don't get trailing whitespace on narrow viewports.
-  window.addEventListener('message', (event) => {
-    if (typeof event.origin !== 'string' || !event.origin.includes('instagram.com')) return;
-    let data = event.data;
-    if (typeof data === 'string') {
-      try { data = JSON.parse(data); } catch (e) { return; }
-    }
-    if (!data || data.type !== 'MEASURE' || !data.details || !data.details.height) return;
-    const height = Math.ceil(data.details.height);
-    document.querySelectorAll('iframe[src*="instagram.com"]').forEach((f) => {
-      if (f.contentWindow === event.source) {
-        f.style.aspectRatio = 'auto';
-        f.style.height = height + 'px';
-      }
-    });
+  // Convert all <blockquote class="instagram-media"> elements into auto-sized
+  // iframes once the Instagram embed.js library is available.
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof processInstagramEmbeds === 'function') processInstagramEmbeds();
   });
 
   // esc closes
@@ -2538,6 +2525,9 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     if (s.url.includes('x.com') || s.url.includes('twitter.com')) {
       loadTwitterWidget(embed);
     }
+    if (s.url.includes('instagram.com')) {
+      processInstagramEmbeds();
+    }
   }
 
   function loadTwitterWidget(container, attempts) {
@@ -2549,12 +2539,22 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     }
   }
 
+  function processInstagramEmbeds(attempts) {
+    attempts = attempts || 0;
+    if (window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
+    } else if (attempts < 20) {
+      setTimeout(() => processInstagramEmbeds(attempts + 1), 250);
+    }
+  }
+
   function getEmbedHTML(stunt) {
     const url = stunt.url;
     if (url.includes('instagram.com/p/') || url.includes('instagram.com/reel/')) {
-      const m = url.match(/instagram\.com\/(?:p|reel)\/([^/?]+)/);
-      const id = m ? m[1] : '';
-      return `<iframe class="embed-ig" src="https://www.instagram.com/p/${id}/embed/" allowfullscreen scrolling="no"></iframe>`;
+      const m = url.match(/instagram\.com\/((?:p|reel)\/[^/?]+)/);
+      const path = m ? m[1] : '';
+      const permalink = `https://www.instagram.com/${path}/`;
+      return `<blockquote class="instagram-media" data-instgrm-permalink="${permalink}" data-instgrm-version="14" style="background:#fff;border:0;margin:0 auto;max-width:540px;width:100%;"><a href="${permalink}"></a></blockquote>`;
     }
     if (url.includes('x.com') || url.includes('twitter.com')) {
       const twUrl = url.replace('x.com', 'twitter.com');
