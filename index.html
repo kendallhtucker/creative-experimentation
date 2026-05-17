@@ -2656,30 +2656,38 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     const btn = document.getElementById('share-score');
     if (!btn) return;
     btn.addEventListener('click', async () => {
-      const shareUrl = window.location.protocol === 'file:'
-        ? 'https://kendallhtucker.github.io/creative-experimentation/'
-        : window.location.origin + SITE_BASE;
-      const shareData = {
-        title: 'Internet Taste Test',
-        text: `i scored ${score}/10 on the internet taste test. ramp is hiring a viral creative producer.`,
-        url: shareUrl,
-      };
+      const scoreStr = String(score).padStart(2, '0');
+      const imageUrl = `${SITE_BASE}assets/share-cards/share-card-result-${scoreStr}.png`;
+      const filename = `internet-taste-test-${scoreStr}.png`;
+      const text = `i scored ${score}/10 on the internet taste test.`;
       const originalLabel = btn.innerHTML;
       try {
-        if (navigator.share) {
-          await navigator.share(shareData);
-          return;
+        const resp = await fetch(imageUrl);
+        const blob = await resp.blob();
+        const file = new File([blob], filename, { type: 'image/png' });
+        // Native share sheet with the PNG attached: AirDrop, Messages, Mail,
+        // Instagram, etc. all receive the image directly.
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: 'Internet Taste Test', text });
+            return;
+          } catch (err) {
+            if (err && err.name === 'AbortError') return; // user dismissed
+            // fall through to download fallback
+          }
         }
-      } catch (err) {
-        if (err && err.name === 'AbortError') return; // user dismissed
-      }
-      // Desktop / no share API: copy URL to clipboard.
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        btn.innerHTML = '★ LINK COPIED ★';
+        // Desktop / no file-share support: trigger a download.
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+        btn.innerHTML = '★ DOWNLOADED ★';
         setTimeout(() => { btn.innerHTML = originalLabel; }, 2500);
       } catch (err) {
-        window.prompt('Copy this link:', shareUrl);
+        window.open(imageUrl, '_blank');
       }
     });
   }
