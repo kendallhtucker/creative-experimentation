@@ -241,6 +241,18 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
         8px 8px 0 #4a002a,
         0 0 30px rgba(255, 204, 51, 0.6);
       transform: skewX(-6deg);
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    a.sun-logo:hover {
+      transform: skewX(-6deg) scale(1.04);
+      color: var(--hot);
+      text-shadow:
+        4px 4px 0 var(--gold),
+        8px 8px 0 #4a002a,
+        0 0 30px rgba(255, 204, 51, 0.7);
     }
     .sun-subline {
       margin-top: 8px;
@@ -1651,7 +1663,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     <div class="sun-orbit r2"><span class="orbiter">💰</span></div>
     <div class="sun">
       <span class="sun-stars-l">★</span>
-      <div class="sun-logo">RAMP</div>
+      <a class="sun-logo" href="https://ramp.com/?utm_source=creativeexperimentation&utm_medium=microsite&utm_campaign=creative_experimentation_hiring&utm_content=home_sun_logo" target="_blank" rel="noopener">RAMP</a>
       <div class="sun-subline">CREATIVE<br>EXPERIMENTATION<br>TEAM</div>
       <span class="sun-stars-r">★</span>
     </div>
@@ -1702,7 +1714,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
 
 </div>
 
-<div class="footer-line">© 2026 RAMP, INC. · creative experimentation division · this site is an homage to the greatest athletes of all time, Michael Jordan and Bugs Bunny</div>
+<div class="footer-line">© 2026 <a href="https://ramp.com/?utm_source=creativeexperimentation&utm_medium=microsite_footer&utm_campaign=creative_experimentation_hiring&utm_content=footer_ramp_inc" target="_blank" rel="noopener">RAMP, INC.</a> · creative experimentation division · this site is an homage to the greatest athletes of all time, Michael Jordan and Bugs Bunny</div>
 
 
 <!-- ============================================== -->
@@ -2661,7 +2673,7 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     if (!btn) return;
     btn.addEventListener('click', async () => {
       const scoreStr = String(score).padStart(2, '0');
-      const imageUrl = `${SITE_BASE}assets/share-cards/share-card-result-${scoreStr}.png`;
+      const imageUrl = `${SITE_BASE}assets/share-cards-ig/share-card-result-${scoreStr}.png`;
       const filename = `internet-taste-test-${scoreStr}.png`;
       const text = `i scored ${score}/10 on the internet taste test.`;
       const originalLabel = btn.innerHTML;
