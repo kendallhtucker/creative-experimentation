@@ -1170,7 +1170,21 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
     }
     /* Instagram embeds use the official blockquote + embed.js pattern.
        embed.js converts each blockquote into an auto-sizing iframe via
-       a postMessage handshake — no hardcoded height needed here. */
+       a postMessage handshake — no hardcoded height needed here.
+       But embed.js sets min-width: 326px on the iframe regardless of
+       container width, so on narrow mobile viewports the iframe bleeds
+       past the right edge. Force it to honor the parent width. */
+    iframe.instagram-media,
+    iframe.instagram-media-rendered,
+    iframe[src*="instagram.com"] {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+    .embed-container,
+    .media-card {
+      overflow: hidden;
+    }
     .embed-container blockquote.twitter-tweet {
       width: 100% !important;
       max-width: 540px !important;
@@ -1810,19 +1824,19 @@ inspo: https://www.webdesignmuseum.org/web-design-in-the-90s/space-jam-1996
       <div class="stat-cell"><div class="num">600K</div><div class="lbl">receipts</div></div>
     </div>
 
-    <p>last summer, when Ramp hit <a href="https://www.notboring.co/p/ramp-at-1-billion" target="_blank" rel="noopener">$1B of revenue</a>, we had less than 2% name recognition across the US. we sat down with our founders and tried to think about how we could get the word out about Ramp in a relatable and fun way. we had many ideas, but one that stuck was showing the old way of accounting versus the Ramp way of accounting.</p>
+    <p>last summer, Ramp hit <a href="https://www.notboring.co/p/ramp-at-1-billion" target="_blank" rel="noopener">$1B of revenue</a> with less than 2% name recognition across the US. we needed a way to fix that. the idea that stuck: show the old way of accounting next to the Ramp way.</p>
 
-    <p>we asked our team how many receipts Ramp's AI processed in a day. we found out it was 600,000, and we thought to ourselves: what if someone tried to do it the old way, in public? we thought how insane it would be, similar to Mr. Beast burying himself alive, if we set up an office in a public place where 600,000 receipts printed out over the course of eight hours. this person needed to read each receipt, type it into an old-timey ledger, and then file the receipt.</p>
+    <p>Ramp's AI processes 600,000 receipts a day. so we wondered, what if someone tried to do it the old way, in public? Mr. Beast style. we'd set up an office in a public place, print 600,000 receipts over 8 hours, and make one person read each one, log it in an old-timey ledger, and file it. we'd livestream it so the comparison felt real. any finance professional watching would feel the struggle in their bones.</p>
 
-    <p>we wanted to livestream it to show that the comparison was real, and we knew any finance professional watching would relate to this struggle. we hoped this would get our name recognition out there more, so that people who didn't even know Ramp's AI was a solution would be encouraged to reach out to us.</p>
+    <p>we needed a star. there aren't many famous accountants. but we kept coming back to one fact: the most famous accountant in the world is Kevin Malone from The Office. would the actor who played him, Brian Baumgartner, do it?</p>
 
-    <p>once we settled on the idea, we had to figure out who would make sense to star in the campaign. sadly, there aren't a ton of famous accountants, but we just couldn't get past this idea that the most famous accountant in the world was Kevin Malone from The Office. what if we got Brian Baumgartner to do our challenge?</p>
+    <p>remarkably, he said yes. the promo content alone broke the internet, Brian back in accountant mode but this time he was competent.</p>
 
-    <p>remarkably, he said yes. we started planning our 8-hour day. we filmed promo content that already broke the internet with how incredible Brian looked going back into his accounting persona. Brian is smart and funny and cool in real life, and that came through in everything we made.</p>
+    <p>Brian is genuinely smart and warm in real life, which carried everything we filmed. on the day of, influencers, celebrities, and comics rotated into the box every 15 minutes to distract or help him. we hit 100K concurrent viewers and 214M total views.</p>
 
-    <p>on the day of, we had influencers, celebrities, and comics going into the box at 15-minute increments to distract or help Brian. this got us over 100,000 concurrent livestream viewers, and our content was shared so widely that we ended up with over 214 million views.</p>
+    <p>the best part: it wasn't random. it landed with our ICP and the general public, and Brian was such a strong spokesperson for Ramp that we brought him back for the <a href="#multiplying-brian" data-page="multiplying-brian">Super Bowl</a>.</p>
 
-    <p>the best thing about this stunt is that it wasn't random. it really resonated with our ICP and the general public, and we had such a great time working with Brian that we chose to do our Super Bowl campaign with him too. <a href="#multiplying-brian" data-page="multiplying-brian">see what we did at the super bowl →</a></p>
+    <p style="margin-top: 432px;">PS. Coincidentally, Andy Buckley (aka David Wallace) was walking through New York and saw the billboards we had put up for Brian's stunt. He filmed a video about how he was the real CFO not Brian and sent it to Brian. We called him immediately and got him involved at once.</p>
 
   </div>
   <div class="hiring-footer">
